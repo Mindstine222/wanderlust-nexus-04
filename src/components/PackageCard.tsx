@@ -6,10 +6,12 @@ import { Badge } from "@/components/ui/badge";
 interface PackageCardProps {
   title: string;
   description: string;
-  price: string;
+  price: string | number;
   duration: string;
-  groupSize: string;
-  rating: string;
+  groupSize?: string;
+  rating: string | number;
+  reviews?: number;
+  location?: string;
   image: string;
   badge?: string;
   variant?: "default" | "luxury";
@@ -22,6 +24,7 @@ const PackageCard = ({
   duration,
   groupSize,
   rating,
+  reviews,
   image,
   badge,
   variant = "default",
@@ -52,6 +55,7 @@ const PackageCard = ({
             <div className="flex items-center gap-1 mt-1">
               <Star className="h-4 w-4 fill-secondary text-secondary" />
               <span className="text-white font-medium">{rating}</span>
+              {reviews && <span className="text-white/80 text-sm ml-1">({reviews})</span>}
             </div>
           </div>
           <div className="text-right">
@@ -69,10 +73,12 @@ const PackageCard = ({
             <Clock className="h-4 w-4" />
             <span>{duration}</span>
           </div>
-          <div className="flex items-center gap-2">
-            <Users className="h-4 w-4" />
-            <span>{groupSize}</span>
-          </div>
+          {groupSize && (
+            <div className="flex items-center gap-2">
+              <Users className="h-4 w-4" />
+              <span>{groupSize}</span>
+            </div>
+          )}
         </div>
       </CardContent>
 

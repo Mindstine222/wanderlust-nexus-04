@@ -1,9 +1,22 @@
+import { useState } from "react";
 import { Search, MapPin, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/hero-beach.jpg";
 
 const Hero = () => {
+  const navigate = useNavigate();
+  const [destination, setDestination] = useState("");
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (destination.trim()) {
+      const formattedDestination = destination.toLowerCase().trim().replace(/\s+/g, "-");
+      navigate(`/countries/${formattedDestination}`);
+    }
+  };
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Background image with overlay */}
@@ -33,13 +46,15 @@ const Hero = () => {
           </div>
 
           {/* Search bar */}
-          <div className="bg-card/95 backdrop-blur-md p-6 md:p-8 rounded-2xl shadow-large max-w-4xl mx-auto">
+          <form onSubmit={handleSearch} className="bg-card/95 backdrop-blur-md p-6 md:p-8 rounded-2xl shadow-large max-w-4xl mx-auto">
             <div className="grid md:grid-cols-3 gap-4">
               <div className="relative">
                 <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-5 w-5" />
                 <Input
-                  placeholder="Where to?"
+                  placeholder="Where to? (e.g., Saudi Arabia)"
                   className="pl-10 h-12 bg-background"
+                  value={destination}
+                  onChange={(e) => setDestination(e.target.value)}
                 />
               </div>
               <div className="relative">
@@ -50,12 +65,12 @@ const Hero = () => {
                   className="pl-10 h-12 bg-background"
                 />
               </div>
-              <Button variant="hero" size="lg" className="h-12">
+              <Button type="submit" variant="hero" size="lg" className="h-12">
                 <Search className="mr-2 h-5 w-5" />
                 Search Packages
               </Button>
             </div>
-          </div>
+          </form>
 
           {/* Quick stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto pt-8">

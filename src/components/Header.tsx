@@ -1,16 +1,20 @@
 import { useState } from "react";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const menuItems = [
-    { label: "Home", href: "#home" },
-    { label: "Packages", href: "#packages" },
-    { label: "Visa & Tickets", href: "#visa" },
-    { label: "About", href: "#about" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: "/" },
+    { label: "Packages", href: "/packages" },
+    { label: "Hajj & Umrah", href: "/hajj-umrah" },
+    { label: "Honeymoon", href: "/honeymoon" },
+    { label: "Visa & Tickets", href: "/visa" },
+    { label: "Special Offers", href: "/offers" },
+    { label: "About", href: "/about" },
+    { label: "Contact", href: "/contact" },
   ];
 
   return (
@@ -33,25 +37,25 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-2">
+          <Link to="/" className="flex items-center gap-2">
             <div className="h-10 w-10 gradient-hero rounded-lg flex items-center justify-center shadow-medium">
               <span className="text-white font-bold text-xl">GT</span>
             </div>
             <span className="text-2xl font-bold bg-clip-text text-transparent gradient-hero">
               Gerry's Travel
             </span>
-          </a>
+          </Link>
 
           {/* Desktop navigation */}
           <nav className="hidden md:flex items-center gap-8">
             {menuItems.map((item) => (
-              <a
+              <Link
                 key={item.label}
-                href={item.href}
+                to={item.href}
                 className="text-foreground hover:text-primary transition-smooth font-medium"
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
@@ -78,14 +82,14 @@ const Header = () => {
         <div className="md:hidden border-t border-border bg-background shadow-large">
           <nav className="container mx-auto px-4 py-6 flex flex-col gap-4">
             {menuItems.map((item) => (
-              <a
+              <Link
                 key={item.label}
-                href={item.href}
+                to={item.href}
                 className="text-foreground hover:text-primary transition-smooth font-medium py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.label}
-              </a>
+              </Link>
             ))}
             <Button variant="hero" size="lg" className="mt-4">
               Book Now
