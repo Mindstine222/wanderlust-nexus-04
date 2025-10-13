@@ -1,4 +1,5 @@
 import { Facebook, Instagram, Twitter, Youtube, Mail, Phone, MapPin } from "lucide-react";
+import flyZoneLogo from "@/assets/fly-zone-logo.png";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -40,13 +41,16 @@ const Footer = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="h-10 w-10 bg-secondary rounded-lg flex items-center justify-center shadow-medium">
-                <span className="text-secondary-foreground font-bold text-xl">FZ</span>
+            <div className="flex items-center gap-3">
+              <img src={flyZoneLogo} alt="Fly Zone Elite Travel" className="h-14 w-14" />
+              <div className="flex flex-col">
+                <span className="text-xl font-bold text-background leading-tight">
+                  FLY ZONE
+                </span>
+                <span className="text-xs text-secondary font-semibold leading-tight">
+                  ELITE TRAVELS
+                </span>
               </div>
-              <span className="text-2xl font-bold text-background">
-                Fly Zone
-              </span>
             </div>
             <p className="text-background/70 leading-relaxed">
               Your trusted partner in creating unforgettable travel experiences worldwide. Excellence in service since 2010.

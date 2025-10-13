@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import flyZoneLogo from "@/assets/fly-zone-logo.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -37,13 +38,16 @@ const Header = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <div className="h-10 w-10 bg-secondary rounded-lg flex items-center justify-center shadow-medium">
-              <span className="text-secondary-foreground font-bold text-xl">FZ</span>
+          <Link to="/" className="flex items-center gap-3">
+            <img src={flyZoneLogo} alt="Fly Zone Elite Travel" className="h-14 w-14" />
+            <div className="flex flex-col">
+              <span className="text-xl font-bold text-foreground leading-tight">
+                FLY ZONE
+              </span>
+              <span className="text-xs text-secondary font-semibold leading-tight">
+                ELITE TRAVELS
+              </span>
             </div>
-            <span className="text-2xl font-bold text-foreground">
-              Fly Zone
-            </span>
           </Link>
 
           {/* Desktop navigation */}
@@ -61,8 +65,8 @@ const Header = () => {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <Button variant="hero" size="lg">
-              Book Now
+            <Button variant="default" size="lg" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-semibold">
+              Contact
             </Button>
           </div>
 
