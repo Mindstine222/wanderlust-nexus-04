@@ -31,15 +31,15 @@ const AboutPage = () => {
   return (
     <>
       <Helmet>
-        <title>About Us - Gerry's Travel</title>
-        <meta name="description" content="Learn about Gerry's Travel - your trusted partner for visa services, flight tickets, and unforgettable travel packages." />
+        <title>About Us - Fly Zone</title>
+        <meta name="description" content="Learn about Fly Zone - your trusted partner for visa services, flight tickets, and unforgettable travel packages." />
       </Helmet>
       <div className="min-h-screen">
         <Header />
         <div className="pt-32 pb-16">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">About Gerry's Travel</h1>
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">About Fly Zone</h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                 Your trusted partner in creating unforgettable travel experiences
               </p>
@@ -48,7 +48,7 @@ const AboutPage = () => {
             <div className="max-w-4xl mx-auto mb-16">
               <div className="prose prose-lg mx-auto">
                 <p className="text-lg text-muted-foreground mb-6">
-                  With over a decade of experience in the travel industry, Gerry's Travel has been helping thousands of travelers explore the world with confidence and ease. We specialize in visa services, flight bookings, and customized travel packages that cater to every budget and preference.
+                  With over a decade of experience in the travel industry, Fly Zone has been helping thousands of travelers explore the world with confidence and ease. We specialize in visa services, flight bookings, and customized travel packages that cater to every budget and preference.
                 </p>
                 <p className="text-lg text-muted-foreground mb-6">
                   Our team of travel experts is dedicated to making your journey seamless from start to finish. Whether you're planning a spiritual pilgrimage, a romantic honeymoon, or an adventurous tour, we handle all the details so you can focus on creating memories.

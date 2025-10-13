@@ -41,11 +41,11 @@ const Footer = () => {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <div className="h-10 w-10 gradient-hero rounded-lg flex items-center justify-center shadow-medium">
-                <span className="text-white font-bold text-xl">GT</span>
+              <div className="h-10 w-10 bg-secondary rounded-lg flex items-center justify-center shadow-medium">
+                <span className="text-secondary-foreground font-bold text-xl">FZ</span>
               </div>
               <span className="text-2xl font-bold text-background">
-                Gerry's Travel
+                Fly Zone
               </span>
             </div>
             <p className="text-background/70 leading-relaxed">
@@ -122,7 +122,7 @@ const Footer = () => {
         {/* Social & Copyright */}
         <div className="border-t border-background/20 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-background/70 text-sm">
-            © {currentYear} Gerry's Travel. All rights reserved.
+            © {currentYear} Fly Zone. All rights reserved.
           </p>
           <div className="flex gap-4">
             {socialLinks.map((social) => (

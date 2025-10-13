@@ -64,7 +64,7 @@ const CountryPage = () => {
   return (
     <>
       <Helmet>
-        <title>{formattedCountry} - Visa, Packages & Travel Guide | Gerry's Travel</title>
+        <title>{formattedCountry} - Visa, Packages & Travel Guide | Fly Zone</title>
         <meta name="description" content={`Complete travel guide for ${formattedCountry}. Find visa information, tour packages, flight tickets, and special offers.`} />
       </Helmet>
       <div className="min-h-screen">

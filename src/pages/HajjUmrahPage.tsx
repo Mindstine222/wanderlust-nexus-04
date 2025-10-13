@@ -51,7 +51,7 @@ const HajjUmrahPage = () => {
   return (
     <>
       <Helmet>
-        <title>Hajj & Umrah Packages - Gerry's Travel</title>
+        <title>Hajj & Umrah Packages - Fly Zone</title>
         <meta name="description" content="Affordable and premium Hajj & Umrah packages with visa assistance, accommodation near Haram, and guided tours." />
       </Helmet>
       <div className="min-h-screen">

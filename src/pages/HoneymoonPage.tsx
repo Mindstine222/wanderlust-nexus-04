@@ -71,7 +71,7 @@ const HoneymoonPage = () => {
   return (
     <>
       <Helmet>
-        <title>Honeymoon Packages - Gerry's Travel</title>
+        <title>Honeymoon Packages - Fly Zone</title>
         <meta name="description" content="Romantic honeymoon packages to exotic destinations. Create unforgettable memories with our couple-friendly curated experiences." />
       </Helmet>
       <div className="min-h-screen">

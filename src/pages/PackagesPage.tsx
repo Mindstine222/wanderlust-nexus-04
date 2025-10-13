@@ -7,7 +7,7 @@ const PackagesPage = () => {
   return (
     <>
       <Helmet>
-        <title>Travel Packages - Gerry's Travel</title>
+        <title>Travel Packages - Fly Zone</title>
         <meta name="description" content="Explore our curated travel packages for all types of travelers. From luxury tours to budget-friendly adventures." />
       </Helmet>
       <div className="min-h-screen">

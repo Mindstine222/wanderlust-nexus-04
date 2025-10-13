@@ -38,11 +38,11 @@ const Header = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <div className="h-10 w-10 gradient-hero rounded-lg flex items-center justify-center shadow-medium">
-              <span className="text-white font-bold text-xl">GT</span>
+            <div className="h-10 w-10 bg-secondary rounded-lg flex items-center justify-center shadow-medium">
+              <span className="text-secondary-foreground font-bold text-xl">FZ</span>
             </div>
-            <span className="text-2xl font-bold bg-clip-text text-transparent gradient-hero">
-              Gerry's Travel
+            <span className="text-2xl font-bold text-foreground">
+              Fly Zone
             </span>
           </Link>
 

@@ -52,7 +52,7 @@ const OffersPage = () => {
   return (
     <>
       <Helmet>
-        <title>Special Offers - Gerry's Travel</title>
+        <title>Special Offers - Fly Zone</title>
         <meta name="description" content="Limited-time travel deals and special offers. Save big on your dream vacation with our exclusive packages." />
       </Helmet>
       <div className="min-h-screen">

@@ -7,8 +7,8 @@ const ContactPage = () => {
   return (
     <>
       <Helmet>
-        <title>Contact Us - Gerry's Travel</title>
-        <meta name="description" content="Get in touch with Gerry's Travel. We're here to help with your travel plans 24/7." />
+        <title>Contact Us - Fly Zone</title>
+        <meta name="description" content="Get in touch with Fly Zone. We're here to help with your travel plans 24/7." />
       </Helmet>
       <div className="min-h-screen">
         <Header />

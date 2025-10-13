@@ -7,7 +7,7 @@ const VisaPage = () => {
   return (
     <>
       <Helmet>
-        <title>Visa Services - Gerry's Travel</title>
+        <title>Visa Services - Fly Zone</title>
         <meta name="description" content="Professional visa application services for all countries. Fast processing, expert guidance, and reliable support." />
       </Helmet>
       <div className="min-h-screen">
