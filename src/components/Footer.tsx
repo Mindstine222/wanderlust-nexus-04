@@ -2,7 +2,7 @@ import { Phone, Mail, Facebook, Twitter, Instagram, Linkedin } from 'lucide-reac
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Separator } from './ui/separator';
-import logoImage from 'figma:asset/e0ffd08f8933846da2959bfcecec1c508228fc02.png';
+import logoImage from '@/assets/fly-zone-logo.png';
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
