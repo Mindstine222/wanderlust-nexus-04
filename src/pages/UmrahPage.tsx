@@ -32,7 +32,7 @@ const umrahPackages = [
     reviews: 289,
     price: 185000,
     originalPrice: 210000,
-    image: 'https://images.unsplash.com/photo-1591604021695-0c69b7c05981?w=600',
+    image: 'https://images.unsplash.com/photo-1542816417-0983c9c9ad53?w=600',
     features: [
       '4-star hotel in Makkah (walking distance)',
       '4-star hotel in Madinah',
@@ -51,7 +51,7 @@ const umrahPackages = [
     reviews: 421,
     price: 295000,
     originalPrice: 340000,
-    image: 'https://images.unsplash.com/photo-1580418827493-f2b22c0a76cb?w=600',
+    image: 'https://images.unsplash.com/photo-1609320839500-91e1e1157d4b?w=600',
     features: [
       '5-star hotel in Makkah (Haram view)',
       '5-star hotel in Madinah',
@@ -71,7 +71,7 @@ const umrahPackages = [
     reviews: 198,
     price: 450000,
     originalPrice: null,
-    image: 'https://images.unsplash.com/photo-1609320839500-91e1e1157d4b?w=600',
+    image: 'https://images.unsplash.com/photo-1591604021695-0c69b7c05981?w=600',
     features: [
       'Family rooms (4 persons)',
       '4-star hotels',
@@ -90,7 +90,7 @@ const umrahPackages = [
     reviews: 534,
     price: 265000,
     originalPrice: 295000,
-    image: 'https://images.unsplash.com/photo-1542816417-0983c9c9ad53?w=600',
+    image: 'https://images.unsplash.com/photo-1580418827493-f2b22c0a76cb?w=600',
     features: [
       '4-star hotel in Makkah',
       '4-star hotel in Madinah',
@@ -109,7 +109,7 @@ const umrahPackages = [
     reviews: 87,
     price: 95000,
     originalPrice: null,
-    image: 'https://images.unsplash.com/photo-1590488471950-7c11f6aae122?w=600',
+    image: 'https://images.unsplash.com/photo-1564769625905-50e93615e769?w=600',
     features: [
       '2-star hotel in Makkah',
       '2-star hotel in Madinah',

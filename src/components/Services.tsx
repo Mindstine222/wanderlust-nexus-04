@@ -2,6 +2,7 @@ import { FileText, Plane, Home, MapPin, Car } from 'lucide-react';
 import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { Carousel, CarouselContent, CarouselItem } from './ui/carousel';
 
 const services = [
   {
@@ -52,8 +53,9 @@ export function Services() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((service) => {
+        {/* Desktop Grid */}
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {services.filter(service => service.id !== 'cars').map((service) => {
             const Icon = service.icon;
             return (
               <Card
@@ -83,6 +85,43 @@ export function Services() {
               </Card>
             );
           })}
+        </div>
+
+        {/* Mobile Carousel */}
+        <div className="md:hidden">
+          <Carousel className="w-full">
+            <CarouselContent className="-ml-4">
+              {services.filter(service => service.id !== 'cars').map((service) => {
+                const Icon = service.icon;
+                return (
+                  <CarouselItem key={service.id} className="pl-4 basis-[280px]">
+                    <Card className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group">
+                      <div className="relative h-48 overflow-hidden">
+                        <ImageWithFallback
+                          src={service.image}
+                          alt={service.title}
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div className="absolute bottom-4 left-4 flex items-center space-x-2">
+                          <div className="bg-white p-2 rounded-full">
+                            <Icon className="h-5 w-5 text-blue-600" />
+                          </div>
+                          <h3 className="text-white">{service.title}</h3>
+                        </div>
+                      </div>
+                      <CardContent className="p-6">
+                        <p className="text-gray-600 mb-4">{service.description}</p>
+                        <Button variant="outline" className="w-full">
+                          Learn More
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  </CarouselItem>
+                );
+              })}
+            </CarouselContent>
+          </Carousel>
         </div>
       </div>
     </section>

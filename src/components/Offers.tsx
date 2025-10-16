@@ -3,6 +3,7 @@ import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
 import { Badge } from './ui/badge';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import { Carousel, CarouselContent, CarouselItem } from './ui/carousel';
 
 const offers = [
   {
@@ -87,7 +88,8 @@ export function Offers() {
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Desktop Grid */}
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {offers.map((offer) => (
             <Card
               key={offer.id}
@@ -134,6 +136,59 @@ export function Offers() {
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        {/* Mobile Carousel */}
+        <div className="md:hidden">
+          <Carousel className="w-full">
+            <CarouselContent className="-ml-4">
+              {offers.map((offer) => (
+                <CarouselItem key={offer.id} className="pl-4 basis-[280px]">
+                  <Card className="overflow-hidden hover:shadow-lg transition-shadow group">
+                    <div className="relative h-56 overflow-hidden">
+                      <ImageWithFallback
+                        src={offer.image}
+                        alt={offer.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
+                      {offer.discount && (
+                        <Badge className="absolute top-4 right-4 bg-red-500 hover:bg-red-600">
+                          <Tag className="h-3 w-3 mr-1" />
+                          {offer.discount}% OFF
+                        </Badge>
+                      )}
+                    </div>
+                    <CardContent className="p-5">
+                      <h3 className="text-gray-900 mb-2">{offer.title}</h3>
+                      <div className="flex items-center text-gray-600 text-sm mb-2">
+                        <MapPin className="h-4 w-4 mr-1" />
+                        {offer.location}
+                      </div>
+                      <div className="flex items-center text-gray-600 text-sm mb-4">
+                        <Clock className="h-4 w-4 mr-1" />
+                        {offer.duration}
+                      </div>
+                      <div className="flex items-center justify-between mb-4">
+                        <div>
+                          <span className="text-blue-600 text-2xl">
+                            PKR {offer.price.toLocaleString()}
+                          </span>
+                          {offer.originalPrice && (
+                            <span className="text-gray-400 line-through ml-2">
+                              PKR {offer.originalPrice.toLocaleString()}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                        Book Now
+                      </Button>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
         </div>
 
         <div className="text-center mt-8 md:hidden">
