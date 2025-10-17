@@ -44,11 +44,11 @@ const services = [
 
 export function Services() {
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-gray-900 mb-4">Our Services</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <h2 className="font-heading text-3xl md:text-4xl font-semibold text-foreground mb-4">Our Services</h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Explore our comprehensive range of travel services designed to make your journey seamless
           </p>
         </div>
@@ -60,25 +60,25 @@ export function Services() {
             return (
               <Card
                 key={service.id}
-                className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group"
+                className="overflow-hidden hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 cursor-pointer group rounded-xl"
               >
                 <div className="relative h-48 overflow-hidden">
                   <ImageWithFallback
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                   <div className="absolute bottom-4 left-4 flex items-center space-x-2">
-                    <div className="bg-white p-2 rounded-full">
-                      <Icon className="h-5 w-5 text-blue-600" />
+                    <div className="bg-background p-2 rounded-full shadow-lg">
+                      <Icon className="h-5 w-5 text-primary" />
                     </div>
-                    <h3 className="text-white">{service.title}</h3>
+                    <h3 className="text-white font-heading font-semibold">{service.title}</h3>
                   </div>
                 </div>
                 <CardContent className="p-6">
-                  <p className="text-gray-600 mb-4">{service.description}</p>
-                  <Button variant="outline" className="w-full">
+                  <p className="text-muted-foreground mb-4">{service.description}</p>
+                  <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
                     Learn More
                   </Button>
                 </CardContent>
@@ -95,23 +95,23 @@ export function Services() {
                 const Icon = service.icon;
                 return (
                   <CarouselItem key={service.id} className="pl-4 basis-[280px]">
-                    <Card className="overflow-hidden hover:shadow-lg transition-shadow cursor-pointer group">
+                    <Card className="overflow-hidden hover:shadow-card-hover transition-all duration-300 cursor-pointer group rounded-xl">
                       <div className="relative h-48 overflow-hidden">
                         <ImageWithFallback
                           src={service.image}
                           alt={service.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                         <div className="absolute bottom-4 left-4 flex items-center space-x-2">
-                          <div className="bg-white p-2 rounded-full">
-                            <Icon className="h-5 w-5 text-blue-600" />
+                          <div className="bg-background p-2 rounded-full shadow-lg">
+                            <Icon className="h-5 w-5 text-primary" />
                           </div>
-                          <h3 className="text-white">{service.title}</h3>
+                          <h3 className="text-white font-heading font-semibold">{service.title}</h3>
                         </div>
                       </div>
                       <CardContent className="p-6">
-                        <p className="text-gray-600 mb-4">{service.description}</p>
+                        <p className="text-muted-foreground mb-4">{service.description}</p>
                         <Button variant="outline" className="w-full">
                           Learn More
                         </Button>

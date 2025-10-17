@@ -74,16 +74,16 @@ const offers = [
 
 export function Offers() {
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center mb-12">
           <div>
-            <h2 className="text-gray-900 mb-2">Special Offers & Packages</h2>
-            <p className="text-gray-600">
+            <h2 className="font-heading text-3xl md:text-4xl font-semibold text-foreground mb-2">Special Offers & Packages</h2>
+            <p className="text-muted-foreground text-lg">
               Discover our best deals on tours, visas, and travel packages
             </p>
           </div>
-          <Button variant="outline" className="hidden md:block">
+          <Button variant="outline" className="hidden md:block hover:bg-primary hover:text-primary-foreground transition-all duration-300">
             View All Offers
           </Button>
         </div>
@@ -93,44 +93,45 @@ export function Offers() {
           {offers.map((offer) => (
             <Card
               key={offer.id}
-              className="overflow-hidden hover:shadow-lg transition-shadow group"
+              className="overflow-hidden hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 group rounded-xl"
             >
               <div className="relative h-56 overflow-hidden">
                 <ImageWithFallback
                   src={offer.image}
                   alt={offer.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 {offer.discount && (
-                  <Badge className="absolute top-4 right-4 bg-red-500 hover:bg-red-600">
+                  <Badge className="absolute top-4 right-4 bg-destructive hover:bg-destructive/90 text-destructive-foreground">
                     <Tag className="h-3 w-3 mr-1" />
                     {offer.discount}% OFF
                   </Badge>
                 )}
               </div>
               <CardContent className="p-5">
-                <h3 className="text-gray-900 mb-2">{offer.title}</h3>
-                <div className="flex items-center text-gray-600 text-sm mb-2">
-                  <MapPin className="h-4 w-4 mr-1" />
+                <h3 className="font-heading font-semibold text-foreground mb-2">{offer.title}</h3>
+                <div className="flex items-center text-muted-foreground text-sm mb-2">
+                  <MapPin className="h-4 w-4 mr-1 text-primary" />
                   {offer.location}
                 </div>
-                <div className="flex items-center text-gray-600 text-sm mb-4">
-                  <Clock className="h-4 w-4 mr-1" />
+                <div className="flex items-center text-muted-foreground text-sm mb-4">
+                  <Clock className="h-4 w-4 mr-1 text-primary" />
                   {offer.duration}
                 </div>
                 <div className="flex items-center justify-between mb-4">
                   <div>
-                    <span className="text-blue-600 text-2xl">
+                    <span className="text-primary text-2xl font-semibold">
                       PKR {offer.price.toLocaleString()}
                     </span>
                     {offer.originalPrice && (
-                      <span className="text-gray-400 line-through ml-2">
+                      <span className="text-muted-foreground line-through ml-2 text-sm">
                         PKR {offer.originalPrice.toLocaleString()}
                       </span>
                     )}
                   </div>
                 </div>
-                <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                <Button className="w-full group-hover:shadow-lg transition-all duration-300">
                   Book Now
                 </Button>
               </CardContent>
@@ -144,43 +145,43 @@ export function Offers() {
             <CarouselContent className="-ml-4">
               {offers.map((offer) => (
                 <CarouselItem key={offer.id} className="pl-4 basis-[280px]">
-                  <Card className="overflow-hidden hover:shadow-lg transition-shadow group">
+                  <Card className="overflow-hidden hover:shadow-card-hover transition-all duration-300 group rounded-xl">
                     <div className="relative h-56 overflow-hidden">
                       <ImageWithFallback
                         src={offer.image}
                         alt={offer.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                       {offer.discount && (
-                        <Badge className="absolute top-4 right-4 bg-red-500 hover:bg-red-600">
+                        <Badge className="absolute top-4 right-4 bg-destructive hover:bg-destructive/90 text-destructive-foreground">
                           <Tag className="h-3 w-3 mr-1" />
                           {offer.discount}% OFF
                         </Badge>
                       )}
                     </div>
                     <CardContent className="p-5">
-                      <h3 className="text-gray-900 mb-2">{offer.title}</h3>
-                      <div className="flex items-center text-gray-600 text-sm mb-2">
-                        <MapPin className="h-4 w-4 mr-1" />
+                      <h3 className="font-heading font-semibold text-foreground mb-2">{offer.title}</h3>
+                      <div className="flex items-center text-muted-foreground text-sm mb-2">
+                        <MapPin className="h-4 w-4 mr-1 text-primary" />
                         {offer.location}
                       </div>
-                      <div className="flex items-center text-gray-600 text-sm mb-4">
-                        <Clock className="h-4 w-4 mr-1" />
+                      <div className="flex items-center text-muted-foreground text-sm mb-4">
+                        <Clock className="h-4 w-4 mr-1 text-primary" />
                         {offer.duration}
                       </div>
                       <div className="flex items-center justify-between mb-4">
                         <div>
-                          <span className="text-blue-600 text-2xl">
+                          <span className="text-primary text-2xl font-semibold">
                             PKR {offer.price.toLocaleString()}
                           </span>
                           {offer.originalPrice && (
-                            <span className="text-gray-400 line-through ml-2">
+                            <span className="text-muted-foreground line-through ml-2 text-sm">
                               PKR {offer.originalPrice.toLocaleString()}
                             </span>
                           )}
                         </div>
                       </div>
-                      <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                      <Button className="w-full">
                         Book Now
                       </Button>
                     </CardContent>

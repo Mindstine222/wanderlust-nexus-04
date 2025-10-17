@@ -25,21 +25,22 @@ const features = [
 
 export function Features() {
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature) => {
+          {features.map((feature, index) => {
             const Icon = feature.icon;
             return (
               <div
                 key={feature.title}
-                className="text-center p-6 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow"
+                className="text-center p-6 bg-card rounded-xl shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 group animate-[fade-in_0.6s_ease-out]"
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-blue-100 rounded-full mb-4">
-                  <Icon className="h-8 w-8 text-blue-600" />
+                <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4 group-hover:bg-primary/20 transition-colors duration-300 group-hover:scale-110 transform transition-transform">
+                  <Icon className="h-8 w-8 text-primary" />
                 </div>
-                <h3 className="mb-2 text-gray-900">{feature.title}</h3>
-                <p className="text-gray-600">{feature.description}</p>
+                <h3 className="mb-2 font-heading font-semibold text-foreground">{feature.title}</h3>
+                <p className="text-muted-foreground">{feature.description}</p>
               </div>
             );
           })}

@@ -2,7 +2,10 @@ import { Hero } from '../components/Hero';
 import { Features } from '../components/Features';
 import { Services } from '../components/Services';
 import { Offers } from '../components/Offers';
-// import { CarsSection } from '../components/CarsSection'; // Hidden as requested
+import { Testimonials } from '../components/Testimonials';
+import { CTABanner } from '../components/CTABanner';
+import { ScrollToTop } from '../components/ScrollToTop';
+import { WhatsAppButton } from '../components/WhatsAppButton';
 
 export function HomePage() {
   return (
@@ -11,7 +14,10 @@ export function HomePage() {
       <Features />
       <Services />
       <Offers />
-      {/* <CarsSection /> */}
+      <Testimonials />
+      <CTABanner />
+      <ScrollToTop />
+      <WhatsAppButton />
     </>
   );
 }
