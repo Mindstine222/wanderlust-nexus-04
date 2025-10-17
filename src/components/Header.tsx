@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, User } from 'lucide-react';
+import { Menu, User } from 'lucide-react';
 import { Button } from './ui/button';
+import { Sheet, SheetContent, SheetTrigger } from './ui/sheet';
 import logoImage from '@/assets/fly-zone-logo.png';
 
 export function Header() {
@@ -85,53 +86,47 @@ export function Header() {
               </Link>
 
               {/* Mobile Menu Button */}
-              <button
-                className="md:hidden p-2"
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              >
-                {mobileMenuOpen ? (
-                  <X className="h-6 w-6 text-gray-700" />
-                ) : (
-                  <Menu className="h-6 w-6 text-gray-700" />
-                )}
-              </button>
+              <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+                <SheetTrigger asChild>
+                  <button className="md:hidden p-2">
+                    <Menu className="h-6 w-6 text-foreground" />
+                  </button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+                  <nav className="flex flex-col space-y-4 mt-8">
+                    {navLinks.map((link) => (
+                      <Link
+                        key={link.name}
+                        to={link.href}
+                        className={`py-3 px-4 font-medium transition-colors rounded-lg ${
+                          location.pathname === link.href
+                            ? 'bg-primary text-primary-foreground'
+                            : 'text-foreground hover:bg-muted'
+                        }`}
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {link.name}
+                      </Link>
+                    ))}
+                    <div className="pt-4 space-y-3 border-t">
+                      <Link to="/signin" className="block">
+                        <Button variant="outline" className="w-full">
+                          Sign In
+                        </Button>
+                      </Link>
+                      <Link to="/signin" className="block">
+                        <Button className="w-full">
+                          My Account
+                        </Button>
+                      </Link>
+                    </div>
+                  </nav>
+                </SheetContent>
+              </Sheet>
             </div>
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-white border-t">
-            <nav className="flex flex-col space-y-1 px-4 py-4">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.name}
-                  to={link.href}
-                  className={`py-2 font-medium transition-colors ${
-                    location.pathname === link.href
-                      ? 'text-primary'
-                      : 'text-foreground/80 hover:text-primary'
-                  }`}
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {link.name}
-                </Link>
-              ))}
-              <div className="pt-4 space-y-2 border-t">
-                <Link to="/signin" className="block">
-                  <Button variant="outline" className="w-full">
-                    Sign In
-                  </Button>
-                </Link>
-                <Link to="/signin" className="block">
-                  <Button className="w-full">
-                    My Account
-                  </Button>
-                </Link>
-              </div>
-            </nav>
-          </div>
-        )}
       </header>
     </>
   );

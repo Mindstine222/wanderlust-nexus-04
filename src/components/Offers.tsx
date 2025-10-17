@@ -89,7 +89,7 @@ export function Offers() {
         </div>
 
         {/* Desktop Grid */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="hidden lg:grid lg:grid-cols-3 gap-6">
           {offers.map((offer) => (
             <Card
               key={offer.id}
@@ -139,57 +139,58 @@ export function Offers() {
           ))}
         </div>
 
-        {/* Mobile Carousel */}
-        <div className="md:hidden">
-          <Carousel className="w-full">
-            <CarouselContent className="-ml-4">
-              {offers.map((offer) => (
-                <CarouselItem key={offer.id} className="pl-4 basis-[280px]">
-                  <Card className="overflow-hidden hover:shadow-card-hover transition-all duration-300 group rounded-xl">
-                    <div className="relative h-56 overflow-hidden">
-                      <ImageWithFallback
-                        src={offer.image}
-                        alt={offer.title}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      {offer.discount && (
-                        <Badge className="absolute top-4 right-4 bg-destructive hover:bg-destructive/90 text-destructive-foreground">
-                          <Tag className="h-3 w-3 mr-1" />
-                          {offer.discount}% OFF
-                        </Badge>
+        {/* Tablet/Mobile Horizontal Scroll */}
+        <div className="lg:hidden overflow-x-auto">
+          <div className="flex gap-6 pb-4" style={{ minWidth: 'min-content' }}>
+            {offers.map((offer, index) => (
+              <Card
+                key={offer.id}
+                className="overflow-hidden hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 group rounded-xl flex-shrink-0 w-[320px] animate-[fade-in_0.6s_ease-out]"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <div className="relative h-56 overflow-hidden">
+                  <ImageWithFallback
+                    src={offer.image}
+                    alt={offer.title}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  {offer.discount && (
+                    <Badge className="absolute top-4 right-4 bg-destructive hover:bg-destructive/90 text-destructive-foreground">
+                      <Tag className="h-3 w-3 mr-1" />
+                      {offer.discount}% OFF
+                    </Badge>
+                  )}
+                </div>
+                <CardContent className="p-5">
+                  <h3 className="font-heading font-semibold text-foreground mb-2">{offer.title}</h3>
+                  <div className="flex items-center text-muted-foreground text-sm mb-2">
+                    <MapPin className="h-4 w-4 mr-1 text-primary" />
+                    {offer.location}
+                  </div>
+                  <div className="flex items-center text-muted-foreground text-sm mb-4">
+                    <Clock className="h-4 w-4 mr-1 text-primary" />
+                    {offer.duration}
+                  </div>
+                  <div className="flex items-center justify-between mb-4">
+                    <div>
+                      <span className="text-primary text-2xl font-semibold">
+                        PKR {offer.price.toLocaleString()}
+                      </span>
+                      {offer.originalPrice && (
+                        <span className="text-muted-foreground line-through ml-2 text-sm">
+                          PKR {offer.originalPrice.toLocaleString()}
+                        </span>
                       )}
                     </div>
-                    <CardContent className="p-5">
-                      <h3 className="font-heading font-semibold text-foreground mb-2">{offer.title}</h3>
-                      <div className="flex items-center text-muted-foreground text-sm mb-2">
-                        <MapPin className="h-4 w-4 mr-1 text-primary" />
-                        {offer.location}
-                      </div>
-                      <div className="flex items-center text-muted-foreground text-sm mb-4">
-                        <Clock className="h-4 w-4 mr-1 text-primary" />
-                        {offer.duration}
-                      </div>
-                      <div className="flex items-center justify-between mb-4">
-                        <div>
-                          <span className="text-primary text-2xl font-semibold">
-                            PKR {offer.price.toLocaleString()}
-                          </span>
-                          {offer.originalPrice && (
-                            <span className="text-muted-foreground line-through ml-2 text-sm">
-                              PKR {offer.originalPrice.toLocaleString()}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                      <Button className="w-full">
-                        Book Now
-                      </Button>
-                    </CardContent>
-                  </Card>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
+                  </div>
+                  <Button className="w-full group-hover:shadow-lg transition-all duration-300">
+                    Book Now
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
 
         <div className="text-center mt-8 md:hidden">

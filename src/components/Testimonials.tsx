@@ -42,7 +42,8 @@ export function Testimonials() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Desktop Grid */}
+        <div className="hidden lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <Card 
               key={testimonial.id} 
@@ -73,6 +74,42 @@ export function Testimonials() {
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        {/* Tablet/Mobile Horizontal Scroll */}
+        <div className="lg:hidden overflow-x-auto">
+          <div className="flex gap-6 pb-4" style={{ minWidth: 'min-content' }}>
+            {testimonials.map((testimonial, index) => (
+              <Card 
+                key={testimonial.id} 
+                className="hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 rounded-xl animate-[fade-in_0.6s_ease-out] flex-shrink-0 w-[320px]"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <CardContent className="p-6">
+                  <div className="flex items-center mb-4">
+                    <Avatar className="h-12 w-12 mr-3">
+                      <AvatarImage src={testimonial.image} alt={testimonial.name} />
+                      <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+                    </Avatar>
+                    <div>
+                      <h4 className="font-semibold text-foreground">{testimonial.name}</h4>
+                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                    </div>
+                  </div>
+                  
+                  <div className="flex mb-3">
+                    {Array.from({ length: testimonial.rating }).map((_, i) => (
+                      <Star key={i} className="h-4 w-4 fill-primary text-primary" />
+                    ))}
+                  </div>
+                  
+                  <p className="text-muted-foreground leading-relaxed">
+                    "{testimonial.content}"
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </div>
       </div>
     </section>

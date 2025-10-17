@@ -54,7 +54,7 @@ export function Services() {
         </div>
 
         {/* Desktop Grid */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="hidden lg:grid lg:grid-cols-4 gap-6">
           {services.filter(service => service.id !== 'cars').map((service) => {
             const Icon = service.icon;
             return (
@@ -87,41 +87,41 @@ export function Services() {
           })}
         </div>
 
-        {/* Mobile Carousel */}
-        <div className="md:hidden">
-          <Carousel className="w-full">
-            <CarouselContent className="-ml-4">
-              {services.filter(service => service.id !== 'cars').map((service) => {
-                const Icon = service.icon;
-                return (
-                  <CarouselItem key={service.id} className="pl-4 basis-[280px]">
-                    <Card className="overflow-hidden hover:shadow-card-hover transition-all duration-300 cursor-pointer group rounded-xl">
-                      <div className="relative h-48 overflow-hidden">
-                        <ImageWithFallback
-                          src={service.image}
-                          alt={service.title}
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-                        <div className="absolute bottom-4 left-4 flex items-center space-x-2">
-                          <div className="bg-background p-2 rounded-full shadow-lg">
-                            <Icon className="h-5 w-5 text-primary" />
-                          </div>
-                          <h3 className="text-white font-heading font-semibold">{service.title}</h3>
-                        </div>
+        {/* Tablet/Mobile Horizontal Scroll */}
+        <div className="lg:hidden overflow-x-auto">
+          <div className="flex gap-6 pb-4" style={{ minWidth: 'min-content' }}>
+            {services.filter(service => service.id !== 'cars').map((service, index) => {
+              const Icon = service.icon;
+              return (
+                <Card
+                  key={service.id}
+                  className="overflow-hidden hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 cursor-pointer group rounded-xl flex-shrink-0 w-[280px] animate-[fade-in_0.6s_ease-out]"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="relative h-48 overflow-hidden">
+                    <ImageWithFallback
+                      src={service.image}
+                      alt={service.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                    <div className="absolute bottom-4 left-4 flex items-center space-x-2">
+                      <div className="bg-background p-2 rounded-full shadow-lg">
+                        <Icon className="h-5 w-5 text-primary" />
                       </div>
-                      <CardContent className="p-6">
-                        <p className="text-muted-foreground mb-4">{service.description}</p>
-                        <Button variant="outline" className="w-full">
-                          Learn More
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  </CarouselItem>
-                );
-              })}
-            </CarouselContent>
-          </Carousel>
+                      <h3 className="text-white font-heading font-semibold">{service.title}</h3>
+                    </div>
+                  </div>
+                  <CardContent className="p-6">
+                    <p className="text-muted-foreground mb-4">{service.description}</p>
+                    <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                      Learn More
+                    </Button>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
