@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, User, Phone } from 'lucide-react';
 import { Button } from './ui/button';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import logoImage from 'figma:asset/e0ffd08f8933846da2959bfcecec1c508228fc02.png';
 
 export function Header() {
