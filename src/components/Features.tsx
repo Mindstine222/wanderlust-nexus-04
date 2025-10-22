@@ -1,73 +1,88 @@
-import { Zap, Headphones, DollarSign, Shield } from 'lucide-react';
+import { motion } from ''framer-motion'';
+import { DollarSign, Headphones, Briefcase, Zap } from 'lucide-react';
 
 const features = [
   {
-    icon: Zap,
-    title: 'Fast Processing',
-    description: 'Quick turnaround time for all services'
+    icon: DollarSign,
+    title: 'Best Prices',
+    description: 'Competitive rates and exclusive deals on all services',
+    color: 'bg-blue-100 text-[#007CFF]'
   },
   {
     icon: Headphones,
     title: '24/7 Support',
-    description: 'Round-the-clock customer assistance'
+    description: 'Round-the-clock customer assistance whenever you need',
+    color: 'bg-green-100 text-green-600'
   },
   {
-    icon: DollarSign,
-    title: 'Best Prices',
-    description: 'Competitive rates guaranteed'
+    icon: Briefcase,
+    title: 'Easy Booking',
+    description: 'Simple and hassle-free booking process in minutes',
+    color: 'bg-purple-100 text-purple-600'
   },
   {
-    icon: Shield,
-    title: 'Secure Booking',
-    description: 'Safe and protected transactions'
+    icon: Zap,
+    title: 'Fast Visa Process',
+    description: 'Quick turnaround time for all visa applications',
+    color: 'bg-orange-100 text-orange-600'
   }
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: 'easeOut'
+    }
+  }
+};
+
 export function Features() {
   return (
-    <section className="py-16 bg-muted/30">
+    <section className="py-16 md:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Desktop Grid */}
-        <div className="hidden lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {features.map((feature, index) => {
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
+        >
+          {features.map((feature) => {
             const Icon = feature.icon;
             return (
-              <div
+              <motion.div
                 key={feature.title}
-                className="text-center p-6 bg-card rounded-xl shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 group animate-[fade-in_0.6s_ease-out]"
-                style={{ animationDelay: `${index * 0.1}s` }}
+                variants={itemVariants}
+                whileHover={{ y: -8, transition: { duration: 0.3 } }}
+                className="text-center p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300"
               >
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4 group-hover:bg-primary/20 transition-colors duration-300 group-hover:scale-110 transform transition-transform">
-                  <Icon className="h-8 w-8 text-primary" />
-                </div>
-                <h3 className="mb-2 font-heading font-semibold text-foreground">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
-              </div>
+                <motion.div 
+                  className={`inline-flex items-center justify-center w-16 h-16 ${feature.color} rounded-full mb-4`}
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Icon className="h-8 w-8" />
+                </motion.div>
+                <h3 className="mb-2 text-[#0B1220]">{feature.title}</h3>
+                <p className="text-gray-600 text-sm">{feature.description}</p>
+              </motion.div>
             );
           })}
-        </div>
-
-        {/* Mobile/Tablet Horizontal Scroll */}
-        <div className="lg:hidden overflow-x-auto">
-          <div className="flex gap-6 pb-4" style={{ minWidth: 'min-content' }}>
-            {features.map((feature, index) => {
-              const Icon = feature.icon;
-              return (
-                <div
-                  key={feature.title}
-                  className="text-center p-6 bg-card rounded-xl shadow-card hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 group animate-[fade-in_0.6s_ease-out] flex-shrink-0 w-[280px]"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-full mb-4 group-hover:bg-primary/20 transition-colors duration-300 group-hover:scale-110 transform transition-transform">
-                    <Icon className="h-8 w-8 text-primary" />
-                  </div>
-                  <h3 className="mb-2 font-heading font-semibold text-foreground">{feature.title}</h3>
-                  <p className="text-muted-foreground">{feature.description}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
