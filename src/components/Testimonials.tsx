@@ -1,116 +1,117 @@
-import { Star } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Star, Quote } from 'lucide-react';
 import { Card, CardContent } from './ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { ImageWithFallback } from './figma/ImageWithFallback';
 
 const testimonials = [
   {
     id: 1,
-    name: 'Sarah Ahmed',
+    name: 'Ahmed Khan',
     role: 'Business Traveler',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150',
+    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzc21hbiUyMHBvcnRyYWl0fGVufDF8fHx8MTc2MDUyNTk4MHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
     rating: 5,
-    content: 'Excellent service! They handled my UK visa application professionally and got it approved within 2 weeks. Highly recommended for visa services.'
+    text: 'Fly Zone made my UK visa application so easy! The team was professional and got my visa approved in just 12 days. Highly recommended!'
   },
   {
     id: 2,
-    name: 'Muhammad Ali',
-    role: 'Family Vacation',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150',
+    name: 'Sara Ali',
+    role: 'Umrah Traveler',
+    image: 'https://images.unsplash.com/photo-1585554414787-09b821c321c0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxidXNpbmVzcyUyMHdvbWFuJTIwcHJvZmVzc2lvbmFsfGVufDF8fHx8MTc2MDUxOTc2M3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
     rating: 5,
-    content: 'Booked our Dubai family tour package through Fly Zone. Everything was perfect - flights, hotels, and activities. Great value for money!'
+    text: 'Booked an Umrah package with Fly Zone and it was the best experience! Everything was well-organized from flights to accommodation. Thank you!'
   },
   {
     id: 3,
-    name: 'Fatima Hassan',
-    role: 'Umrah Pilgrim',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150',
+    name: 'Bilal Hassan',
+    role: 'Tourist',
+    image: 'https://images.unsplash.com/photo-1570170609489-43197f518df0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdCUyMHBlcnNvbnxlbnwxfHx8fDE3NjA2MDU5NTh8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
     rating: 5,
-    content: 'The Umrah package was amazing! Well-organized accommodation near Haram and excellent group coordination. May Allah bless the team.'
+    text: 'Great service and competitive prices! I got the best deal on my Dubai tour package. The 24/7 support team was always there to help.'
   }
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: 'easeOut'
+    }
+  }
+};
+
 export function Testimonials() {
   return (
-    <section className="py-16 bg-background">
+    <section className="py-16 md:py-20 bg-[#F7F9FC]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="font-heading text-3xl md:text-4xl font-semibold text-foreground mb-4">
-            What Our Customers Say
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Real experiences from travelers who trusted us with their journey
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-[#0B1220] mb-4">What Our Customers Say</h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Read testimonials from travelers who trusted Fly Zone for their journey
           </p>
-        </div>
+        </motion.div>
 
-        {/* Desktop Grid */}
-        <div className="hidden lg:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
-            <Card 
-              key={testimonial.id} 
-              className="hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 rounded-xl animate-[fade-in_0.6s_ease-out]"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <CardContent className="p-6">
-                <div className="flex items-center mb-4">
-                  <Avatar className="h-12 w-12 mr-3">
-                    <AvatarImage src={testimonial.image} alt={testimonial.name} />
-                    <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                  <div>
-                    <h4 className="font-semibold text-foreground">{testimonial.name}</h4>
-                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                  </div>
-                </div>
-                
-                <div className="flex mb-3">
-                  {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-primary text-primary" />
-                  ))}
-                </div>
-                
-                <p className="text-muted-foreground leading-relaxed">
-                  "{testimonial.content}"
-                </p>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-
-        {/* Tablet/Mobile Horizontal Scroll */}
-        <div className="lg:hidden overflow-x-auto">
-          <div className="flex gap-6 pb-4" style={{ minWidth: 'min-content' }}>
-            {testimonials.map((testimonial, index) => (
-              <Card 
-                key={testimonial.id} 
-                className="hover:shadow-card-hover transition-all duration-300 hover:-translate-y-1 rounded-xl animate-[fade-in_0.6s_ease-out] flex-shrink-0 w-[320px]"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+        >
+          {testimonials.map((testimonial) => (
+            <motion.div key={testimonial.id} variants={itemVariants}>
+              <Card className="h-full hover:shadow-xl transition-all duration-300 border-none">
                 <CardContent className="p-6">
-                  <div className="flex items-center mb-4">
-                    <Avatar className="h-12 w-12 mr-3">
-                      <AvatarImage src={testimonial.image} alt={testimonial.name} />
-                      <AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <h4 className="font-semibold text-foreground">{testimonial.name}</h4>
-                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
-                    </div>
+                  <div className="flex items-center justify-center mb-4">
+                    <Quote className="h-10 w-10 text-[#007CFF] opacity-30" />
                   </div>
                   
-                  <div className="flex mb-3">
-                    {Array.from({ length: testimonial.rating }).map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-primary text-primary" />
+                  <div className="flex justify-center mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="h-5 w-5 text-yellow-400 fill-yellow-400" />
                     ))}
                   </div>
-                  
-                  <p className="text-muted-foreground leading-relaxed">
-                    "{testimonial.content}"
+
+                  <p className="text-gray-700 text-center mb-6 italic">
+                    "{testimonial.text}"
                   </p>
+
+                  <div className="flex items-center justify-center gap-4">
+                    <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-[#007CFF]">
+                      <ImageWithFallback
+                        src={testimonial.image}
+                        alt={testimonial.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="text-left">
+                      <h4 className="text-[#0B1220] text-sm">{testimonial.name}</h4>
+                      <p className="text-gray-500 text-xs">{testimonial.role}</p>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
-            ))}
-          </div>
-        </div>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
