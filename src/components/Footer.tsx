@@ -4,7 +4,7 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Separator } from './ui/separator';
 import { Link } from 'react-router-dom';
-import logoImage from 'figma:asset/e0ffd08f8933846da2959bfcecec1c508228fc02.png';
+import logoImage from '../assets/fly-zone-logo.png';
 
 const footerVariants = {
   hidden: { opacity: 0, y: 30 },
