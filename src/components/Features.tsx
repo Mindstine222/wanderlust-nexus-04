@@ -1,4 +1,4 @@
-import { motion } from ''framer-motion'';
+import { motion } from 'framer-motion';
 import { DollarSign, Headphones, Briefcase, Zap } from 'lucide-react';
 
 const features = [
