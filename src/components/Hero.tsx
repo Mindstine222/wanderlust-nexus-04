@@ -1,26 +1,26 @@
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 
 const heroSlides = [
   {
     id: 1,
-    image: 'https://images.unsplash.com/photo-1760229803865-6d70d9b96d8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhaXJwbGFuZSUyMHRyYXZlbCUyMGRlc3RpbmF0aW9ufGVufDF8fHx8MTc2MDYwOTE4Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    image: 'https://images.unsplash.com/photo-1760229803865-6d70d9b96d8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxhaXJwbGFuZSUyMHRyYXZlbCUyMGRlc3RpbmF0aW9ufGVufDF8fHx8MTc2MDYwOTE4Mnww&ixlib=rb-4.1.0&q=80&w=1080',
     title: 'Your Travel Partner for Visas, Flights, and Tours',
-    subtitle: 'Experience hassle-free travel with our comprehensive services'
+    subtitle: 'Experience hassle-free travel with our comprehensive services',
   },
   {
     id: 2,
-    image: 'https://images.unsplash.com/photo-1613398591223-81408bc4aa2e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiZWFjaCUyMHBhcmFkaXNlJTIwdmFjYXRpb258ZW58MXx8fHwxNzYwNjA5MTgyfDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    image: 'https://images.unsplash.com/photo-1613398591223-81408bc4aa2e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiZWFjaCUyMHBhcmFkaXNlJTIwdmFjYXRpb258ZW58MXx8fHwxNzYwNjA5MTgyfDA&ixlib=rb-4.1.0&q=80&w=1080',
     title: 'Discover Your Dream Destination',
-    subtitle: 'Explore the world with exclusive travel packages'
+    subtitle: 'Explore the world with exclusive travel packages',
   },
   {
     id: 3,
-    image: 'https://images.unsplash.com/photo-1624889164456-2d65f10b6a79?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjaXR5JTIwc2t5bGluZXxlbnwxfHx8fDE3NjA2MDQ5NDJ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+    image: 'https://images.unsplash.com/photo-1624889164456-2d65f10b6a79?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjBjaXR5JTIwc2t5bGluZXxlbnwxfHx8fDE3NjA2MDQ5NDJ8MA&ixlib=rb-4.1.0&q=80&w=1080',
     title: 'Best Prices Guaranteed',
-    subtitle: 'Book flights, hotels, and cars at unbeatable rates'
-  }
+    subtitle: 'Book flights, hotels, and cars at unbeatable rates',
+  },
 ];
 
 export function Hero() {
