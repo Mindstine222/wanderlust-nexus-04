@@ -8,10 +8,7 @@ import { FlightsPage } from './pages/FlightsPage';
 import { UmrahPage } from './pages/UmrahPage';
 import { ToursPage } from './pages/ToursPage';
 import { TrackingPage } from './pages/TrackingPage';
-import { SignInPage } from './pages/SignInPage';
-import { OffersPage } from './pages/OffersPage';
-import { CarRentalPage } from './pages/CarRentalPage';
-import { MyAccountPage } from './pages/MyAccountPage';
+
 
 export default function App() {
   return (
