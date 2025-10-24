@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, User, Phone } from 'lucide-react';
 import { Button } from './ui/button';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence } from 'framer-motion';
 import logoImage from '../assets/fly-zone-logo.png';
 
 export function Header() {
