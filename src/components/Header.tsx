@@ -97,17 +97,7 @@ export function Header() {
                   <Phone className="h-4 w-4 mr-2" />
                   Call Now
                 </Button>
-                <Link to="/signin" className="block" onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="outline" className="w-full border-gray-300">
-                    Sign In
-                  </Button>
-                </Link>
-                <Link to="/account" className="block" onClick={() => setMobileMenuOpen(false)}>
-                  <Button className="w-full bg-[#007CFF] hover:bg-[#0066CC] text-white">
-                    <User className="h-4 w-4 mr-2" />
-                    My Account
-                  </Button>
-                </Link>
+                
               </div>
             </div>
           </motion.div>
