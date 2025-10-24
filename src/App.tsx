@@ -22,11 +22,10 @@ export default function App() {
             <Route path="/flights" element={<FlightsPage />} />
             <Route path="/umrah" element={<UmrahPage />} />
             <Route path="/tours" element={<ToursPage />} />
-            <Route path="/car-rental" element={<CarRentalPage />} />
-            <Route path="/offers" element={<OffersPage />} />
+           
             <Route path="/tracking" element={<TrackingPage />} />
             <Route path="/signin" element={<SignInPage />} />
-            <Route path="/account" element={<MyAccountPage />} />
+         
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
