@@ -13,7 +13,7 @@ export function Header() {
 
   const navLinks = [
     { name: 'Visas', href: '/visas' },
-    { name: 'Flights', href: '/flights' },
+    { name: 'Tickets', href: '/flights' },
     { name: 'Umrah', href: '/umrah' },
     { name: 'Tours', href: '/tours' },
     { name: 'Tracking', href: '/tracking' }
@@ -97,17 +97,6 @@ export function Header() {
                   <Phone className="h-4 w-4 mr-2" />
                   Call Now
                 </Button>
-                <Link to="/signin" className="block" onClick={() => setMobileMenuOpen(false)}>
-                  <Button variant="outline" className="w-full border-gray-300">
-                    Sign In
-                  </Button>
-                </Link>
-                <Link to="/account" className="block" onClick={() => setMobileMenuOpen(false)}>
-                  <Button className="w-full bg-[#007CFF] hover:bg-[#0066CC] text-white">
-                    <User className="h-4 w-4 mr-2" />
-                    My Account
-                  </Button>
-                </Link>
               </div>
             </div>
           </motion.div>
@@ -144,7 +133,7 @@ export function Header() {
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center space-x-8">
+            <nav className="hidden lg:flex items-center space-x-1">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
@@ -176,19 +165,6 @@ export function Header() {
                 <Phone className="h-4 w-4" />
                 <span>Call Now</span>
               </Button>
-              
-              <Link to="/signin" className="hidden md:block">
-                <Button variant="ghost" className="text-[#0B1220] hover:text-[#007CFF] hover:bg-[#007CFF]/10">
-                  Sign In
-                </Button>
-              </Link>
-              
-              <Link to="/account" className="hidden md:block">
-                <Button className="bg-[#007CFF] hover:bg-[#0066CC] text-white transition-all duration-300 hover:shadow-lg hover:shadow-[#007CFF]/30">
-                  <User className="h-4 w-4 mr-2" />
-                  My Account
-                </Button>
-              </Link>
 
               {/* Mobile Menu Button */}
               <button
