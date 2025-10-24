@@ -135,7 +135,8 @@ export function Header() {
 
             {/* Desktop Navigation */}
             
-            <nav className="hidden lg:flex items-center space-x-8[&>a]:mr-0 [&>a]:pr-0">
+            <nav className="hidden lg:flex items-center space-x-8 [&>a:first-child]:ml-0 [&>a]:m-0">
+
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
