@@ -24,7 +24,7 @@ export default function App() {
             <Route path="/tours" element={<ToursPage />} />
            
             <Route path="/tracking" element={<TrackingPage />} />
-            <Route path="/signin" element={<SignInPage />} />
+            
          
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
