@@ -167,19 +167,6 @@ export function Header() {
                 <span>Call Now</span>
               </Button>
               
-              <Link to="/signin" className="hidden md:block">
-                <Button variant="ghost" className="text-[#0B1220] hover:text-[#007CFF] hover:bg-[#007CFF]/10">
-                  Sign In
-                </Button>
-              </Link>
-              
-              <Link to="/account" className="hidden md:block">
-                <Button className="bg-[#007CFF] hover:bg-[#0066CC] text-white transition-all duration-300 hover:shadow-lg hover:shadow-[#007CFF]/30">
-                  <User className="h-4 w-4 mr-2" />
-                  My Account
-                </Button>
-              </Link>
-
               {/* Mobile Menu Button */}
               <button
                 className="lg:hidden p-2 hover:bg-gray-100 rounded-lg transition-colors"
