@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, User, Phone } from 'lucide-react';
 import { Button } from './ui/button';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import logoImage from '../assets/fly-zone-logo.png';
 
 export function Header() {
@@ -13,7 +13,7 @@ export function Header() {
 
   const navLinks = [
     { name: 'Visas', href: '/visas' },
-    { name: 'Tickets', href: '/flights' },
+    { name: 'Tickets', href: '/tickets' },
     { name: 'Umrah', href: '/umrah' },
     { name: 'Tours', href: '/tours' },
     { name: 'Tracking', href: '/tracking' }
@@ -97,6 +97,17 @@ export function Header() {
                   <Phone className="h-4 w-4 mr-2" />
                   Call Now
                 </Button>
+                <Link to="/signin" className="block" onClick={() => setMobileMenuOpen(false)}>
+                  <Button variant="outline" className="w-full border-gray-300">
+                    Sign In
+                  </Button>
+                </Link>
+                <Link to="/account" className="block" onClick={() => setMobileMenuOpen(false)}>
+                  <Button className="w-full bg-[#007CFF] hover:bg-[#0066CC] text-white">
+                    <User className="h-4 w-4 mr-2" />
+                    My Account
+                  </Button>
+                </Link>
               </div>
             </div>
           </motion.div>
@@ -165,6 +176,19 @@ export function Header() {
                 <Phone className="h-4 w-4" />
                 <span>Call Now</span>
               </Button>
+              
+              <Link to="/signin" className="hidden md:block">
+                <Button variant="ghost" className="text-[#0B1220] hover:text-[#007CFF] hover:bg-[#007CFF]/10">
+                  Sign In
+                </Button>
+              </Link>
+              
+              <Link to="/account" className="hidden md:block">
+                <Button className="bg-[#007CFF] hover:bg-[#0066CC] text-white transition-all duration-300 hover:shadow-lg hover:shadow-[#007CFF]/30">
+                  <User className="h-4 w-4 mr-2" />
+                  My Account
+                </Button>
+              </Link>
 
               {/* Mobile Menu Button */}
               <button
