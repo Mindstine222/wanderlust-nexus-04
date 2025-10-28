@@ -3,8 +3,7 @@ import { Button } from './ui/button';
 
 export function WhatsAppButton() {
   const handleWhatsAppClick = () => {
-    // Replace with your actual WhatsApp number
-    const phoneNumber = '923001234567'; // Format: country code + number (no + or spaces)
+    const phoneNumber = '923152199168'; // Format: country code + number (no + or spaces)
     const message = encodeURIComponent('Hi! I would like to inquire about your travel services.');
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   };

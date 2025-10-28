@@ -136,14 +136,14 @@ export function Footer() {
           <div className="text-center space-y-2 text-sm border-t border-gray-800 pt-6">
             <div className="flex items-center justify-center space-x-2">
               <Phone className="h-4 w-4 text-[#007CFF]" />
-              <a href="tel:+923001234567" className="hover:text-[#007CFF] transition-colors">
-                +92 300 1234567
+              <a href="tel:+923152199168" className="hover:text-[#007CFF] transition-colors">
+                +92 315 2199168
               </a>
             </div>
             <div className="flex items-center justify-center space-x-2">
               <Mail className="h-4 w-4 text-[#007CFF]" />
-              <a href="mailto:info@flyzone.com" className="hover:text-[#007CFF] transition-colors">
-                info@flyzone.com
+              <a href="mailto:flyzonesmc@gmail.com" className="hover:text-[#007CFF] transition-colors">
+                flyzonesmc@gmail.com
               </a>
             </div>
           </div>
@@ -293,8 +293,8 @@ export function Footer() {
                 <Phone className="h-5 w-5 text-[#007CFF] mt-0.5" />
                 <div>
                   <p className="text-white">Call Us</p>
-                  <a href="tel:+923001234567" className="hover:text-[#007CFF] transition-colors">
-                    +92 300 1234567
+                  <a href="tel:+923152199168" className="hover:text-[#007CFF] transition-colors">
+                    +92 315 2199168
                   </a>
                 </div>
               </div>
@@ -302,8 +302,8 @@ export function Footer() {
                 <Mail className="h-5 w-5 text-[#007CFF] mt-0.5" />
                 <div>
                   <p className="text-white">Email Us</p>
-                  <a href="mailto:info@flyzone.com" className="hover:text-[#007CFF] transition-colors">
-                    info@flyzone.com
+                  <a href="mailto:flyzonesmc@gmail.com" className="hover:text-[#007CFF] transition-colors">
+                    flyzonesmc@gmail.com
                   </a>
                 </div>
               </div>
@@ -311,7 +311,7 @@ export function Footer() {
                 <MapPin className="h-5 w-5 text-[#007CFF] mt-0.5" />
                 <div>
                   <p className="text-white">Address</p>
-                  <p className="text-gray-400">Karachi, Pakistan</p>
+                  <p className="text-gray-400">24 plaza bahria town Lahore Pakistan</p>
                 </div>
               </div>
             </div>
