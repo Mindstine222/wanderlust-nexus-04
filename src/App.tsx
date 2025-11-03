@@ -7,7 +7,6 @@ import { VisasPage } from './pages/VisasPage';
 import { FlightsPage } from './pages/FlightsPage';
 import { UmrahPage } from './pages/UmrahPage';
 import { ToursPage } from './pages/ToursPage';
-import { TrackingPage } from './pages/TrackingPage';
 
 
 export default function App() {
@@ -22,8 +21,6 @@ export default function App() {
             <Route path="/tickets" element={<FlightsPage />} />
             <Route path="/umrah" element={<UmrahPage />} />
             <Route path="/tours" element={<ToursPage />} />
-            
-         
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </main>
