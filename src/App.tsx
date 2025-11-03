@@ -22,8 +22,6 @@ export default function App() {
             <Route path="/tickets" element={<FlightsPage />} />
             <Route path="/umrah" element={<UmrahPage />} />
             <Route path="/tours" element={<ToursPage />} />
-           
-            <Route path="/tracking" element={<TrackingPage />} />
             
          
             <Route path="*" element={<Navigate to="/" replace />} />

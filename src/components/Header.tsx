@@ -15,8 +15,7 @@ export function Header() {
     { name: 'Visas', href: '/visas' },
     { name: 'Tickets', href: '/tickets' },
     { name: 'Umrah', href: '/umrah' },
-    { name: 'Tours', href: '/tours' },
-    { name: 'Tracking', href: '/tracking' }
+    { name: 'Tours', href: '/tours' }
   ];
 
   useEffect(() => {

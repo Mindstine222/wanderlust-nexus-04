@@ -62,6 +62,180 @@ export type Database = {
         }
         Relationships: []
       }
+      tour_packages: {
+        Row: {
+          created_at: string
+          departure_dates: Json | null
+          description: string | null
+          destination: string
+          display_order: number | null
+          duration: string
+          exclusions: Json | null
+          features: Json | null
+          id: string
+          image_url: string | null
+          inclusions: Json | null
+          is_active: boolean
+          itinerary: Json | null
+          name: string
+          original_price: number | null
+          price: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          departure_dates?: Json | null
+          description?: string | null
+          destination: string
+          display_order?: number | null
+          duration: string
+          exclusions?: Json | null
+          features?: Json | null
+          id?: string
+          image_url?: string | null
+          inclusions?: Json | null
+          is_active?: boolean
+          itinerary?: Json | null
+          name: string
+          original_price?: number | null
+          price: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          departure_dates?: Json | null
+          description?: string | null
+          destination?: string
+          display_order?: number | null
+          duration?: string
+          exclusions?: Json | null
+          features?: Json | null
+          id?: string
+          image_url?: string | null
+          inclusions?: Json | null
+          is_active?: boolean
+          itinerary?: Json | null
+          name?: string
+          original_price?: number | null
+          price?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      umrah_packages: {
+        Row: {
+          created_at: string
+          departure_dates: Json | null
+          description: string | null
+          display_order: number | null
+          duration: string
+          exclusions: Json | null
+          features: Json | null
+          hotel_details: Json | null
+          id: string
+          image_url: string | null
+          inclusions: Json | null
+          is_active: boolean
+          name: string
+          original_price: number | null
+          price: number
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          departure_dates?: Json | null
+          description?: string | null
+          display_order?: number | null
+          duration: string
+          exclusions?: Json | null
+          features?: Json | null
+          hotel_details?: Json | null
+          id?: string
+          image_url?: string | null
+          inclusions?: Json | null
+          is_active?: boolean
+          name: string
+          original_price?: number | null
+          price: number
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          departure_dates?: Json | null
+          description?: string | null
+          display_order?: number | null
+          duration?: string
+          exclusions?: Json | null
+          features?: Json | null
+          hotel_details?: Json | null
+          id?: string
+          image_url?: string | null
+          inclusions?: Json | null
+          is_active?: boolean
+          name?: string
+          original_price?: number | null
+          price?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      visa_packages: {
+        Row: {
+          country: string
+          created_at: string
+          description: string | null
+          display_order: number | null
+          features: Json | null
+          id: string
+          image_url: string | null
+          is_active: boolean
+          name: string
+          original_price: number | null
+          price: number
+          processing_time: string | null
+          requirements: Json | null
+          updated_at: string
+          validity: string | null
+          visa_type: string
+        }
+        Insert: {
+          country: string
+          created_at?: string
+          description?: string | null
+          display_order?: number | null
+          features?: Json | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          name: string
+          original_price?: number | null
+          price: number
+          processing_time?: string | null
+          requirements?: Json | null
+          updated_at?: string
+          validity?: string | null
+          visa_type: string
+        }
+        Update: {
+          country?: string
+          created_at?: string
+          description?: string | null
+          display_order?: number | null
+          features?: Json | null
+          id?: string
+          image_url?: string | null
+          is_active?: boolean
+          name?: string
+          original_price?: number | null
+          price?: number
+          processing_time?: string | null
+          requirements?: Json | null
+          updated_at?: string
+          validity?: string | null
+          visa_type?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
