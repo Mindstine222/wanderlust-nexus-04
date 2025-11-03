@@ -93,7 +93,11 @@ export function Header() {
 
               {/* Action Buttons */}
               <div className="space-y-3 pt-6 border-t">
-                <Button variant="outline" className="w-full border-[#007CFF] text-[#007CFF]">
+                <Button 
+                  variant="outline" 
+                  className="w-full border-[#007CFF] text-[#007CFF]"
+                  onClick={() => window.open('tel:+923152199168', '_self')}
+                >
                   <Phone className="h-4 w-4 mr-2" />
                   Call Now
                 </Button>
@@ -164,6 +168,7 @@ export function Header() {
               <Button 
                 variant="outline" 
                 className="hidden md:flex items-center space-x-2 border-[#007CFF] text-[#007CFF] hover:bg-[#007CFF] hover:text-white transition-all duration-300"
+                onClick={() => window.open('tel:+923152199168', '_self')}
               >
                 <Phone className="h-4 w-4" />
                 <span>Call Now</span>
