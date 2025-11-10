@@ -197,9 +197,12 @@ export function UmrahPage() {
 
                   <Button 
                     className="w-full bg-green-600 hover:bg-green-700"
-                    onClick={() => handleBookPackage(pkg.name)}
+                    onClick={() => {
+                      setSelectedPackage(pkg.name);
+                      setBookingModalOpen(true);
+                    }}
                   >
-                    Request Quote
+                    Book Package
                   </Button>
                 </CardContent>
               </Card>
