@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { MapPin, Clock, Tag } from 'lucide-react';
 import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
 import { Badge } from './ui/badge';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import { Carousel, CarouselContent, CarouselItem } from './ui/carousel';
+import { BookingModal } from './BookingModal';
 
 const offers = [
   {
@@ -73,6 +75,14 @@ const offers = [
 ];
 
 export function Offers() {
+  const [bookingModalOpen, setBookingModalOpen] = useState(false);
+  const [selectedOffer, setSelectedOffer] = useState<string>('');
+
+  const handleBookNow = (offerTitle: string) => {
+    setSelectedOffer(offerTitle);
+    setBookingModalOpen(true);
+  };
+
   return (
     <section className="py-16 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -119,20 +129,11 @@ export function Offers() {
                   <Clock className="h-4 w-4 mr-1 text-primary" />
                   {offer.duration}
                 </div>
-                <div className="flex items-center justify-between mb-4">
-                  <div>
-                    <span className="text-primary text-2xl font-semibold">
-                      PKR {offer.price.toLocaleString()}
-                    </span>
-                    {offer.originalPrice && (
-                      <span className="text-muted-foreground line-through ml-2 text-sm">
-                        PKR {offer.originalPrice.toLocaleString()}
-                      </span>
-                    )}
-                  </div>
-                </div>
-                <Button className="w-full group-hover:shadow-lg transition-all duration-300">
-                  Book Now
+                <Button 
+                  className="w-full group-hover:shadow-lg transition-all duration-300"
+                  onClick={() => handleBookNow(offer.title)}
+                >
+                  Request Quote
                 </Button>
               </CardContent>
             </Card>
@@ -172,20 +173,11 @@ export function Offers() {
                     <Clock className="h-4 w-4 mr-1 text-primary" />
                     {offer.duration}
                   </div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <span className="text-primary text-2xl font-semibold">
-                        PKR {offer.price.toLocaleString()}
-                      </span>
-                      {offer.originalPrice && (
-                        <span className="text-muted-foreground line-through ml-2 text-sm">
-                          PKR {offer.originalPrice.toLocaleString()}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                  <Button className="w-full group-hover:shadow-lg transition-all duration-300">
-                    Book Now
+                  <Button 
+                    className="w-full group-hover:shadow-lg transition-all duration-300"
+                    onClick={() => handleBookNow(offer.title)}
+                  >
+                    Request Quote
                   </Button>
                 </CardContent>
               </Card>
@@ -197,6 +189,12 @@ export function Offers() {
           <Button variant="outline">View All Offers</Button>
         </div>
       </div>
+
+      <BookingModal 
+        open={bookingModalOpen}
+        onOpenChange={setBookingModalOpen}
+        defaultPackage={selectedOffer}
+      />
     </section>
   );
 }

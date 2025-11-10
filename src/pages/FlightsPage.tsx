@@ -1,8 +1,19 @@
+import { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { Card, CardContent } from '../components/ui/card';
+import { Button } from '../components/ui/button';
+import { BookingModal } from '../components/BookingModal';
 
 export function FlightsPage() {
+  const [bookingModalOpen, setBookingModalOpen] = useState(false);
+  const [selectedRoute, setSelectedRoute] = useState<{ from: string; to: string } | null>(null);
+
+  const handleBookFlight = (route: typeof popularRoutes[0]) => {
+    setSelectedRoute({ from: route.from, to: route.to });
+    setBookingModalOpen(true);
+  };
+
   return (
     <div>
       <Breadcrumbs items={[{ label: 'Flight Booking' }]} />
@@ -25,7 +36,7 @@ export function FlightsPage() {
           <h2 className="text-center text-gray-900 mb-12">Popular Flight Routes</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {popularRoutes.map((route) => (
-              <Card key={route.id} className="hover:shadow-lg transition-shadow cursor-pointer group">
+              <Card key={route.id} className="hover:shadow-lg transition-shadow group">
                 <CardContent className="p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div>
@@ -43,12 +54,15 @@ export function FlightsPage() {
                     </div>
                   </div>
                   <div className="border-t pt-4">
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center mb-3">
                       <span className="text-gray-600 text-sm">{route.airline}</span>
-                      <span className="text-blue-600 text-xl">
-                        PKR {route.price.toLocaleString()}
-                      </span>
                     </div>
+                    <Button 
+                      className="w-full bg-blue-600 hover:bg-blue-700"
+                      onClick={() => handleBookFlight(route)}
+                    >
+                      Request Quote
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -92,6 +106,13 @@ export function FlightsPage() {
           </div>
         </div>
       </section>
+
+      <BookingModal 
+        open={bookingModalOpen}
+        onOpenChange={setBookingModalOpen}
+        defaultServiceType="flight"
+        defaultPackage={selectedRoute ? `${selectedRoute.from} to ${selectedRoute.to}` : ''}
+      />
     </div>
   );
 }

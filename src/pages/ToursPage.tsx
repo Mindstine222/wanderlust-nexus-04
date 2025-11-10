@@ -5,6 +5,7 @@ import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import { BookingModal } from '../components/BookingModal';
 
 const tourCategories = ['All Tours', 'Popular', 'Adventure', 'Cultural', 'Beach', 'City Tours'];
 
@@ -148,10 +149,17 @@ const tourPackages = [
 
 export function ToursPage() {
   const [selectedCategory, setSelectedCategory] = useState('All Tours');
+  const [bookingModalOpen, setBookingModalOpen] = useState(false);
+  const [selectedTour, setSelectedTour] = useState<string>('');
 
   const filteredTours = selectedCategory === 'All Tours' 
     ? tourPackages 
     : tourPackages.filter(tour => tour.category === selectedCategory || (selectedCategory === 'Popular' && tour.popular));
+
+  const handleBookTour = (tourName: string) => {
+    setSelectedTour(tourName);
+    setBookingModalOpen(true);
+  };
 
   return (
     <div>
@@ -246,23 +254,12 @@ export function ToursPage() {
                     Group: {tour.groupSize}
                   </div>
 
-                  <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <span className="text-purple-600 text-2xl">
-                        PKR {tour.price.toLocaleString()}
-                      </span>
-                      {tour.originalPrice && (
-                        <span className="text-gray-400 line-through ml-2 text-sm">
-                          PKR {tour.originalPrice.toLocaleString()}
-                        </span>
-                      )}
-                      <p className="text-gray-500 text-sm">Per person</p>
-                    </div>
-                  </div>
-
-                  <Button className="w-full bg-purple-600 hover:bg-purple-700">
+                  <Button 
+                    className="w-full bg-purple-600 hover:bg-purple-700"
+                    onClick={() => handleBookTour(tour.name)}
+                  >
                     <Plane className="h-4 w-4 mr-2" />
-                    Book Tour
+                    Request Quote
                   </Button>
                 </CardContent>
               </Card>
@@ -276,6 +273,13 @@ export function ToursPage() {
           )}
         </div>
       </section>
+
+      <BookingModal 
+        open={bookingModalOpen}
+        onOpenChange={setBookingModalOpen}
+        defaultServiceType="tour"
+        defaultPackage={selectedTour}
+      />
     </div>
   );
 }

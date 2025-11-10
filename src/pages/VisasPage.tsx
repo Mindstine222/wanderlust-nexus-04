@@ -6,6 +6,7 @@ import { Input } from '../components/ui/input';
 import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import { BookingModal } from '../components/BookingModal';
 
 const visaCategories = ['All Countries', 'Europe', 'Asia', 'Middle East', 'Americas', 'Africa'];
 
@@ -159,12 +160,19 @@ const visaCountries = [
 export function VisasPage() {
   const [selectedCategory, setSelectedCategory] = useState('All Countries');
   const [searchQuery, setSearchQuery] = useState('');
+  const [bookingModalOpen, setBookingModalOpen] = useState(false);
+  const [selectedVisa, setSelectedVisa] = useState<{ country: string; type: string } | null>(null);
 
   const filteredVisas = visaCountries.filter(visa => {
     const matchesCategory = selectedCategory === 'All Countries' || visa.category === selectedCategory;
     const matchesSearch = visa.country.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
+
+  const handleApplyNow = (visa: typeof visaCountries[0]) => {
+    setSelectedVisa({ country: visa.country, type: visa.type });
+    setBookingModalOpen(true);
+  };
 
   return (
     <div>
@@ -251,18 +259,12 @@ export function VisasPage() {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <span className="text-blue-600 text-2xl">
-                        PKR {visa.price.toLocaleString()}
-                      </span>
-                      <span className="text-gray-500 text-sm block">Starting from</span>
-                    </div>
-                  </div>
-
-                  <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                  <Button 
+                    className="w-full bg-blue-600 hover:bg-blue-700"
+                    onClick={() => handleApplyNow(visa)}
+                  >
                     <FileText className="h-4 w-4 mr-2" />
-                    Apply Now
+                    Request Quote
                   </Button>
                 </CardContent>
               </Card>
@@ -313,6 +315,13 @@ export function VisasPage() {
           </div>
         </div>
       </section>
+
+      <BookingModal 
+        open={bookingModalOpen}
+        onOpenChange={setBookingModalOpen}
+        defaultServiceType="visa"
+        defaultPackage={selectedVisa ? `${selectedVisa.country} - ${selectedVisa.type}` : ''}
+      />
     </div>
   );
 }

@@ -1,9 +1,11 @@
+import { useState } from 'react';
 import { Star, Calendar, Hotel, Utensils, Bus, CheckCircle } from 'lucide-react';
 import { Breadcrumbs } from '../components/Breadcrumbs';
 import { Button } from '../components/ui/button';
 import { Card, CardContent } from '../components/ui/card';
 import { Badge } from '../components/ui/badge';
 import { ImageWithFallback } from '../components/figma/ImageWithFallback';
+import { BookingModal } from '../components/BookingModal';
 
 const umrahPackages = [
   {
@@ -122,6 +124,14 @@ const umrahPackages = [
 ];
 
 export function UmrahPage() {
+  const [bookingModalOpen, setBookingModalOpen] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState<string>('');
+
+  const handleBookPackage = (packageName: string) => {
+    setSelectedPackage(packageName);
+    setBookingModalOpen(true);
+  };
+
   return (
     <div>
       <Breadcrumbs items={[{ label: 'Umrah Packages' }]} />
@@ -185,22 +195,11 @@ export function UmrahPage() {
                     ))}
                   </div>
 
-                  <div className="mb-4">
-                    <div className="flex items-baseline">
-                      <span className="text-blue-600 text-2xl">
-                        PKR {pkg.price.toLocaleString()}
-                      </span>
-                      {pkg.originalPrice && (
-                        <span className="text-gray-400 line-through ml-2">
-                          PKR {pkg.originalPrice.toLocaleString()}
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-gray-500 text-sm">Per person</p>
-                  </div>
-
-                  <Button className="w-full bg-green-600 hover:bg-green-700">
-                    Book Package
+                  <Button 
+                    className="w-full bg-green-600 hover:bg-green-700"
+                    onClick={() => handleBookPackage(pkg.name)}
+                  >
+                    Request Quote
                   </Button>
                 </CardContent>
               </Card>
@@ -245,6 +244,13 @@ export function UmrahPage() {
           </div>
         </div>
       </section>
+
+      <BookingModal 
+        open={bookingModalOpen}
+        onOpenChange={setBookingModalOpen}
+        defaultServiceType="umrah"
+        defaultPackage={selectedPackage}
+      />
     </div>
   );
 }
