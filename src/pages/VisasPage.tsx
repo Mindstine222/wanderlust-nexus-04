@@ -161,18 +161,13 @@ export function VisasPage() {
   const [selectedCategory, setSelectedCategory] = useState('All Countries');
   const [searchQuery, setSearchQuery] = useState('');
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
-  const [selectedVisa, setSelectedVisa] = useState<{ country: string; type: string } | null>(null);
+  const [selectedVisa, setSelectedVisa] = useState({ country: '', type: '' });
 
   const filteredVisas = visaCountries.filter(visa => {
     const matchesCategory = selectedCategory === 'All Countries' || visa.category === selectedCategory;
     const matchesSearch = visa.country.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
   });
-
-  const handleApplyNow = (visa: typeof visaCountries[0]) => {
-    setSelectedVisa({ country: visa.country, type: visa.type });
-    setBookingModalOpen(true);
-  };
 
   return (
     <div>
@@ -261,10 +256,13 @@ export function VisasPage() {
 
                   <Button 
                     className="w-full bg-blue-600 hover:bg-blue-700"
-                    onClick={() => handleApplyNow(visa)}
+                    onClick={() => {
+                      setSelectedVisa({ country: visa.country, type: visa.type });
+                      setBookingModalOpen(true);
+                    }}
                   >
                     <FileText className="h-4 w-4 mr-2" />
-                    Request Quote
+                    Apply Now
                   </Button>
                 </CardContent>
               </Card>
@@ -316,11 +314,12 @@ export function VisasPage() {
         </div>
       </section>
 
-      <BookingModal 
-        open={bookingModalOpen}
-        onOpenChange={setBookingModalOpen}
-        defaultServiceType="visa"
-        defaultPackage={selectedVisa ? `${selectedVisa.country} - ${selectedVisa.type}` : ''}
+      {/* Booking Modal */}
+      <BookingModal
+        isOpen={bookingModalOpen}
+        onClose={() => setBookingModalOpen(false)}
+        defaultService="Visas"
+        defaultPackage={`${selectedVisa.country} - ${selectedVisa.type}`}
       />
     </div>
   );
