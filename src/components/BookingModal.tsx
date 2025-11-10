@@ -1,8 +1,5 @@
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
-import { Calendar, Users, Mail, Phone, User, MessageSquare, Package } from 'lucide-react';
+import { X, Send, CheckCircle } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -10,14 +7,10 @@ import {
   DialogHeader,
   DialogTitle,
 } from './ui/dialog';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from './ui/form';
+import { Button } from './ui/button';
+import { Input } from './ui/input';
+import { Label } from './ui/label';
+import { Textarea } from './ui/textarea';
 import {
   Select,
   SelectContent,
@@ -25,313 +18,320 @@ import {
   SelectTrigger,
   SelectValue,
 } from './ui/select';
-import { Input } from './ui/input';
-import { Textarea } from './ui/textarea';
-import { Button } from './ui/button';
-import { toast } from 'sonner';
-
-const bookingSchema = z.object({
-  name: z.string()
-    .trim()
-    .min(2, { message: "Name must be at least 2 characters" })
-    .max(100, { message: "Name must be less than 100 characters" }),
-  email: z.string()
-    .trim()
-    .email({ message: "Invalid email address" })
-    .max(255, { message: "Email must be less than 255 characters" }),
-  phone: z.string()
-    .trim()
-    .min(10, { message: "Phone number must be at least 10 digits" })
-    .max(20, { message: "Phone number must be less than 20 digits" })
-    .regex(/^[0-9+\-\s()]+$/, { message: "Invalid phone number format" }),
-  serviceType: z.string()
-    .min(1, { message: "Please select a service type" }),
-  packageDestination: z.string()
-    .trim()
-    .min(2, { message: "Package/destination is required" })
-    .max(200, { message: "Package/destination must be less than 200 characters" }),
-  travelDate: z.string()
-    .min(1, { message: "Travel date is required" }),
-  numberOfPeople: z.string()
-    .min(1, { message: "Number of people is required" })
-    .regex(/^[0-9]+$/, { message: "Must be a valid number" }),
-  message: z.string()
-    .trim()
-    .max(1000, { message: "Message must be less than 1000 characters" })
-    .optional(),
-});
-
-type BookingFormValues = z.infer<typeof bookingSchema>;
+import { toast } from 'sonner@2.0.3';
 
 interface BookingModalProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  defaultServiceType?: string;
+  isOpen: boolean;
+  onClose: () => void;
+  defaultService?: string;
   defaultPackage?: string;
 }
 
-export function BookingModal({ 
-  open, 
-  onOpenChange,
-  defaultServiceType,
-  defaultPackage 
-}: BookingModalProps) {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const form = useForm<BookingFormValues>({
-    resolver: zodResolver(bookingSchema),
-    defaultValues: {
-      name: '',
-      email: '',
-      phone: '',
-      serviceType: defaultServiceType || '',
-      packageDestination: defaultPackage || '',
-      travelDate: '',
-      numberOfPeople: '1',
-      message: '',
-    },
+export function BookingModal({ isOpen, onClose, defaultService = '', defaultPackage = '' }: BookingModalProps) {
+  const [loading, setLoading] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    service: defaultService,
+    packageName: defaultPackage,
+    travelDate: '',
+    numberOfPeople: '1',
+    message: ''
   });
 
-  const onSubmit = async (data: BookingFormValues) => {
-    setIsSubmitting(true);
-    
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+
     try {
-      // TODO: Replace this with actual email sending via edge function
-      // Example: await supabase.functions.invoke('send-booking-email', { body: data });
-      
-      // Simulated email sending for now
-      console.log('Booking data:', data);
-      
-      // Show success message
-      toast.success('Booking request submitted!', {
-        description: 'Our team will contact you shortly to confirm your booking.',
+      // Prepare email content
+      const emailContent = `
+New Booking Request from Fly Zone Elite Travels
+
+Customer Details:
+- Name: ${formData.name}
+- Email: ${formData.email}
+- Phone: ${formData.phone}
+
+Service Details:
+- Service Type: ${formData.service}
+- Package: ${formData.packageName}
+- Travel Date: ${formData.travelDate}
+- Number of People: ${formData.numberOfPeople}
+
+Additional Message:
+${formData.message || 'No additional message'}
+
+---
+This request was submitted through the Fly Zone Elite Travels website.
+      `.trim();
+
+      /**
+       * TO INTEGRATE REAL EMAIL FUNCTIONALITY:
+       * 
+       * Option 1 - Use EmailJS (Frontend only):
+       * 1. Sign up at emailjs.com
+       * 2. Install: npm install @emailjs/browser
+       * 3. Replace the simulation code below with:
+       *    
+       *    import emailjs from '@emailjs/browser';
+       *    
+       *    await emailjs.send(
+       *      'YOUR_SERVICE_ID',
+       *      'YOUR_TEMPLATE_ID',
+       *      {
+       *        to_email: 'flyzonesmc@gmail.com',
+       *        customer_email: formData.email,
+       *        customer_name: formData.name,
+       *        customer_phone: formData.phone,
+       *        service_type: formData.service,
+       *        package_name: formData.packageName,
+       *        travel_date: formData.travelDate,
+       *        number_of_people: formData.numberOfPeople,
+       *        message: formData.message
+       *      },
+       *      'YOUR_PUBLIC_KEY'
+       *    );
+       * 
+       * Option 2 - Use Backend API:
+       * Create a backend endpoint (Node.js/Express with nodemailer) and call it:
+       *    
+       *    await fetch('/api/send-booking', {
+       *      method: 'POST',
+       *      headers: { 'Content-Type': 'application/json' },
+       *      body: JSON.stringify(formData)
+       *    });
+       */
+
+      // Simulate email sending (REMOVE THIS IN PRODUCTION)
+      console.log('Email would be sent to: flyzonesmc@gmail.com');
+      console.log('Copy to customer: ', formData.email);
+      console.log('Email content:', emailContent);
+
+      // Simulate API call delay (REMOVE THIS IN PRODUCTION)
+      await new Promise(resolve => setTimeout(resolve, 1500));
+
+      setSubmitted(true);
+      toast.success('Booking Request Sent!', {
+        description: 'We will contact you shortly with more details.'
       });
-      
-      // Reset form and close modal
-      form.reset();
-      onOpenChange(false);
-      
+
+      // Reset form after 2 seconds and close modal
+      setTimeout(() => {
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          service: '',
+          packageName: '',
+          travelDate: '',
+          numberOfPeople: '1',
+          message: ''
+        });
+        setSubmitted(false);
+        onClose();
+      }, 2000);
+
     } catch (error) {
-      console.error('Error submitting booking:', error);
-      toast.error('Failed to submit booking', {
-        description: 'Please try again or contact us directly.',
+      console.error('Error sending booking request:', error);
+      toast.error('Failed to send booking request', {
+        description: 'Please try again or contact us directly.'
       });
     } finally {
-      setIsSubmitting(false);
+      setLoading(false);
     }
   };
 
+  const handleChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }));
+  };
+
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle className="text-2xl">Request a Booking</DialogTitle>
-          <DialogDescription>
-            Fill out the form below and our team will contact you with pricing and availability
-          </DialogDescription>
-        </DialogHeader>
+        {!submitted ? (
+          <>
+            <DialogHeader>
+              <DialogTitle className="text-2xl text-[#0B1220]">Request a Quote</DialogTitle>
+              <DialogDescription>
+                Fill out the form below and we'll get back to you with pricing and availability
+              </DialogDescription>
+            </DialogHeader>
 
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {/* Name */}
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Full Name</FormLabel>
-                    <FormControl>
-                      <div className="relative">
-                        <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input placeholder="John Doe" className="pl-9" {...field} />
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+            <form onSubmit={handleSubmit} className="space-y-6 mt-4">
+              {/* Personal Information */}
+              <div className="space-y-4">
+                <h3 className="text-[#0B1220]">Personal Information</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="name">Full Name *</Label>
+                    <Input
+                      id="name"
+                      required
+                      value={formData.name}
+                      onChange={(e) => handleChange('name', e.target.value)}
+                      placeholder="Enter your full name"
+                      className="mt-1"
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="phone">Phone Number *</Label>
+                    <Input
+                      id="phone"
+                      required
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) => handleChange('phone', e.target.value)}
+                      placeholder="+92 300 1234567"
+                      className="mt-1"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <Label htmlFor="email">Email Address *</Label>
+                  <Input
+                    id="email"
+                    required
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => handleChange('email', e.target.value)}
+                    placeholder="your.email@example.com"
+                    className="mt-1"
+                  />
+                </div>
+              </div>
 
-              {/* Email */}
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email Address</FormLabel>
-                    <FormControl>
-                      <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input 
-                          type="email" 
-                          placeholder="john@example.com" 
-                          className="pl-9" 
-                          {...field} 
-                        />
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              {/* Phone */}
-              <FormField
-                control={form.control}
-                name="phone"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Phone Number</FormLabel>
-                    <FormControl>
-                      <div className="relative">
-                        <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input placeholder="+92 300 1234567" className="pl-9" {...field} />
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              {/* Service Type */}
-              <FormField
-                control={form.control}
-                name="serviceType"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Service Type</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select service type" />
-                        </SelectTrigger>
-                      </FormControl>
+              {/* Service Details */}
+              <div className="space-y-4">
+                <h3 className="text-[#0B1220]">Service Details</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="service">Service Type *</Label>
+                    <Select
+                      value={formData.service}
+                      onValueChange={(value) => handleChange('service', value)}
+                      required
+                    >
+                      <SelectTrigger id="service" className="mt-1">
+                        <SelectValue placeholder="Select service" />
+                      </SelectTrigger>
                       <SelectContent>
-                        <SelectItem value="visa">Visa Services</SelectItem>
-                        <SelectItem value="flight">Flight Booking</SelectItem>
-                        <SelectItem value="umrah">Umrah Package</SelectItem>
-                        <SelectItem value="tour">Tour Package</SelectItem>
-                        <SelectItem value="hotel">Hotel Booking</SelectItem>
-                        <SelectItem value="other">Other Services</SelectItem>
+                        <SelectItem value="Visas">Visa Services</SelectItem>
+                        <SelectItem value="Flights">Flight Booking</SelectItem>
+                        <SelectItem value="Umrah">Umrah Packages</SelectItem>
+                        <SelectItem value="Tours">Tour Packages</SelectItem>
+                        <SelectItem value="Other">Other Services</SelectItem>
                       </SelectContent>
                     </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+                  </div>
+                  <div>
+                    <Label htmlFor="packageName">Package/Destination</Label>
+                    <Input
+                      id="packageName"
+                      value={formData.packageName}
+                      onChange={(e) => handleChange('packageName', e.target.value)}
+                      placeholder="e.g., Dubai Tour, UK Visa"
+                      className="mt-1"
+                    />
+                  </div>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <Label htmlFor="travelDate">Preferred Travel Date</Label>
+                    <Input
+                      id="travelDate"
+                      type="date"
+                      value={formData.travelDate}
+                      onChange={(e) => handleChange('travelDate', e.target.value)}
+                      className="mt-1"
+                      min={new Date().toISOString().split('T')[0]}
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="numberOfPeople">Number of People</Label>
+                    <Select
+                      value={formData.numberOfPeople}
+                      onValueChange={(value) => handleChange('numberOfPeople', value)}
+                    >
+                      <SelectTrigger id="numberOfPeople" className="mt-1">
+                        <SelectValue placeholder="Select number" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="1">1 Person</SelectItem>
+                        <SelectItem value="2">2 People</SelectItem>
+                        <SelectItem value="3">3 People</SelectItem>
+                        <SelectItem value="4">4 People</SelectItem>
+                        <SelectItem value="5">5 People</SelectItem>
+                        <SelectItem value="6+">6+ People</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+              </div>
 
-              {/* Package/Destination */}
-              <FormField
-                control={form.control}
-                name="packageDestination"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Package/Destination</FormLabel>
-                    <FormControl>
-                      <div className="relative">
-                        <Package className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input 
-                          placeholder="e.g., Dubai Tour Package" 
-                          className="pl-9" 
-                          {...field} 
-                        />
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              {/* Additional Information */}
+              <div>
+                <Label htmlFor="message">Additional Information</Label>
+                <Textarea
+                  id="message"
+                  value={formData.message}
+                  onChange={(e) => handleChange('message', e.target.value)}
+                  placeholder="Tell us more about your requirements, special requests, or questions..."
+                  className="mt-1 min-h-24"
+                />
+              </div>
 
-              {/* Travel Date */}
-              <FormField
-                control={form.control}
-                name="travelDate"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Preferred Travel Date</FormLabel>
-                    <FormControl>
-                      <div className="relative">
-                        <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input 
-                          type="date" 
-                          className="pl-9" 
-                          {...field} 
-                          min={new Date().toISOString().split('T')[0]}
-                        />
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              {/* Submit Button */}
+              <div className="flex gap-3 pt-4">
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={onClose}
+                  className="flex-1"
+                  disabled={loading}
+                >
+                  Cancel
+                </Button>
+                <Button
+                  type="submit"
+                  className="flex-1 bg-[#007CFF] hover:bg-[#0066CC]"
+                  disabled={loading}
+                >
+                  {loading ? (
+                    <>
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="h-4 w-4 mr-2" />
+                      Send Request
+                    </>
+                  )}
+                </Button>
+              </div>
 
-              {/* Number of People */}
-              <FormField
-                control={form.control}
-                name="numberOfPeople"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Number of People</FormLabel>
-                    <FormControl>
-                      <div className="relative">
-                        <Users className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                        <Input 
-                          type="number" 
-                          min="1" 
-                          placeholder="1" 
-                          className="pl-9" 
-                          {...field} 
-                        />
-                      </div>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              <p className="text-sm text-gray-500 text-center">
+                By submitting this form, you agree to be contacted by Fly Zone Elite Travels
+              </p>
+            </form>
+          </>
+        ) : (
+          <div className="py-12 text-center">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
+              <CheckCircle className="h-8 w-8 text-green-600" />
             </div>
-
-            {/* Additional Message */}
-            <FormField
-              control={form.control}
-              name="message"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Additional Requirements (Optional)</FormLabel>
-                  <FormControl>
-                    <div className="relative">
-                      <MessageSquare className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-                      <Textarea 
-                        placeholder="Any special requirements or questions..."
-                        className="pl-9 min-h-24"
-                        {...field}
-                      />
-                    </div>
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <div className="flex gap-3 pt-4">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => onOpenChange(false)}
-                className="flex-1"
-                disabled={isSubmitting}
-              >
-                Cancel
-              </Button>
-              <Button
-                type="submit"
-                className="flex-1"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? 'Submitting...' : 'Submit Request'}
-              </Button>
-            </div>
-          </form>
-        </Form>
+            <h3 className="text-2xl text-[#0B1220] mb-2">Request Sent Successfully!</h3>
+            <p className="text-gray-600 mb-4">
+              Thank you for your interest. We will review your request and contact you shortly with pricing and availability.
+            </p>
+            <p className="text-sm text-gray-500">
+              A confirmation has been sent to {formData.email}
+            </p>
+          </div>
+        )}
       </DialogContent>
     </Dialog>
   );
