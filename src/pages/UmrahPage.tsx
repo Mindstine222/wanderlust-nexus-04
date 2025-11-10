@@ -125,12 +125,7 @@ const umrahPackages = [
 
 export function UmrahPage() {
   const [bookingModalOpen, setBookingModalOpen] = useState(false);
-  const [selectedPackage, setSelectedPackage] = useState<string>('');
-
-  const handleBookPackage = (packageName: string) => {
-    setSelectedPackage(packageName);
-    setBookingModalOpen(true);
-  };
+  const [selectedPackage, setSelectedPackage] = useState('');
 
   return (
     <div>
