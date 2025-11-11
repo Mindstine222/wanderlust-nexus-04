@@ -151,15 +151,32 @@ This request was submitted through the Fly Zone Elite Travels website.
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
      <DialogContent
-      className="fixed left-1/2 top-1/2 z-50 w-[95%] sm:max-w-2xl max-h-[90vh] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-lg bg-white p-6 shadow-xl focus:outline-none"
-        {!submitted ? (
-          <>
-            <DialogHeader>
-              <DialogTitle className="text-2xl text-[#0B1220]">Request a Quote</DialogTitle>
-              <DialogDescription>
-                Fill out the form below and we'll get back to you with pricing and availability
-              </DialogDescription>
-            </DialogHeader>
+          className="fixed left-1/2 top-1/2 z-50 w-[95%] sm:max-w-2xl max-h-[90vh] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-lg bg-white p-6 shadow-xl focus:outline-none">
+                {!submitted ? (
+                  <>
+                    <DialogHeader>
+                      <DialogTitle className="text-2xl text-[#0B1220]">Request a Quote</DialogTitle>
+                      <DialogDescription>
+                        Fill out the form below and we'll get back to you with pricing and availability
+                      </DialogDescription>
+                    </DialogHeader>
+                    {/* rest of your form... */}
+                  </>
+                ) : (
+                  <div className="py-12 text-center">
+                    <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
+                      <CheckCircle className="h-8 w-8 text-green-600" />
+                    </div>
+                    <h3 className="text-2xl text-[#0B1220] mb-2">Request Sent Successfully!</h3>
+                    <p className="text-gray-600 mb-4">
+                      Thank you for your interest. We will review your request and contact you shortly.
+                    </p>
+                    <p className="text-sm text-gray-500">
+                      A confirmation has been sent to {formData.email}
+                    </p>
+                  </div>
+                )}
+              </DialogContent>
 
             <form onSubmit={handleSubmit} className="space-y-6 mt-4">
               {/* Personal Information */}
