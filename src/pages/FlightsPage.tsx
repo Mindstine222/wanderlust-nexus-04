@@ -108,9 +108,9 @@ export function FlightsPage() {
       </section>
 
       <BookingModal 
-        open={bookingModalOpen}
-        onOpenChange={setBookingModalOpen}
-        defaultServiceType="flight"
+        isOpen={bookingModalOpen}
+        onClose={() => setBookingModalOpen(false)}
+        defaultService="Flights"
         defaultPackage={selectedRoute ? `${selectedRoute.from} to ${selectedRoute.to}` : ''}
       />
     </div>

@@ -275,9 +275,9 @@ export function ToursPage() {
       </section>
 
       <BookingModal 
-        open={bookingModalOpen}
-        onOpenChange={setBookingModalOpen}
-        defaultServiceType="tour"
+        isOpen={bookingModalOpen}
+        onClose={() => setBookingModalOpen(false)}
+        defaultService="Tours"
         defaultPackage={selectedTour}
       />
     </div>

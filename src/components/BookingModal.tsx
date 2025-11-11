@@ -150,7 +150,7 @@ This request was submitted through the Fly Zone Elite Travels website.
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-2xl max-h-[90vh] overflow-y-auto">
         {!submitted ? (
           <>
             <DialogHeader>

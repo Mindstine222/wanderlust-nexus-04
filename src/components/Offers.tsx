@@ -191,8 +191,8 @@ export function Offers() {
       </div>
 
       <BookingModal 
-        open={bookingModalOpen}
-        onOpenChange={setBookingModalOpen}
+        isOpen={bookingModalOpen}
+        onClose={() => setBookingModalOpen(false)}
         defaultPackage={selectedOffer}
       />
     </section>

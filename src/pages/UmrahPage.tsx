@@ -244,9 +244,9 @@ export function UmrahPage() {
       </section>
 
       <BookingModal 
-        open={bookingModalOpen}
-        onOpenChange={setBookingModalOpen}
-        defaultServiceType="umrah"
+        isOpen={bookingModalOpen}
+        onClose={() => setBookingModalOpen(false)}
+        defaultService="Umrah"
         defaultPackage={selectedPackage}
       />
     </div>
