@@ -21,7 +21,8 @@ export function FloatingActions() {
   };
 
   const openWhatsApp = () => {
-    window.open('https://wa.me/923001234567', '_blank');
+    const message = encodeURIComponent('Hi! I would like to inquire about your travel services.');
+    window.open(`https://wa.me/923152199168?text=${message}`, '_blank');
   };
 
   return (

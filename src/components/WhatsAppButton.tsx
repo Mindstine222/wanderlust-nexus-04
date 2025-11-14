@@ -3,7 +3,7 @@ import { Button } from './ui/button';
 
 export function WhatsAppButton() {
   const handleWhatsAppClick = () => {
-    const phoneNumber = '+923152199168'; // Format: country code + number (no + or spaces)
+    const phoneNumber = '923152199168'; // WhatsApp requires number without '+' or spaces
     const message = encodeURIComponent('Hi! I would like to inquire about your travel services.');
     window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
   };
