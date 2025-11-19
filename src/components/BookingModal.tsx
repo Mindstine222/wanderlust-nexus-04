@@ -150,21 +150,21 @@ This request was submitted through the Fly Zone Elite Travels website.
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto p-4 sm:p-6">
         {!submitted ? (
           <>
             <DialogHeader>
-              <DialogTitle className="text-2xl text-[#0B1220]">Request a Quote</DialogTitle>
-              <DialogDescription>
+              <DialogTitle className="text-xl sm:text-2xl text-[#0B1220]">Request a Quote</DialogTitle>
+              <DialogDescription className="text-sm">
                 Fill out the form below and we'll get back to you with pricing and availability
               </DialogDescription>
             </DialogHeader>
 
-            <form onSubmit={handleSubmit} className="space-y-6 mt-4">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6 mt-4">
               {/* Personal Information */}
-              <div className="space-y-4">
-                <h3 className="text-[#0B1220]">Personal Information</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-3 sm:space-y-4">
+                <h3 className="text-base sm:text-lg font-semibold text-[#0B1220]">Personal Information</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                   <div>
                     <Label htmlFor="name">Full Name *</Label>
                     <Input
@@ -204,9 +204,9 @@ This request was submitted through the Fly Zone Elite Travels website.
               </div>
 
               {/* Service Details */}
-              <div className="space-y-4">
-                <h3 className="text-[#0B1220]">Service Details</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-3 sm:space-y-4">
+                <h3 className="text-base sm:text-lg font-semibold text-[#0B1220]">Service Details</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                   <div>
                     <Label htmlFor="service">Service Type *</Label>
                     <Select
@@ -237,7 +237,7 @@ This request was submitted through the Fly Zone Elite Travels website.
                     />
                   </div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4">
                   <div>
                     <Label htmlFor="travelDate">Preferred Travel Date</Label>
                     <Input
@@ -284,19 +284,19 @@ This request was submitted through the Fly Zone Elite Travels website.
               </div>
 
               {/* Submit Button */}
-              <div className="flex gap-3 pt-4">
+              <div className="flex flex-col sm:flex-row gap-3 pt-4">
                 <Button
                   type="button"
                   variant="outline"
                   onClick={onClose}
-                  className="flex-1"
+                  className="flex-1 w-full"
                   disabled={loading}
                 >
                   Cancel
                 </Button>
                 <Button
                   type="submit"
-                  className="flex-1 bg-[#007CFF] hover:bg-[#0066CC]"
+                  className="flex-1 w-full bg-[#007CFF] hover:bg-[#0066CC]"
                   disabled={loading}
                 >
                   {loading ? (
@@ -313,21 +313,21 @@ This request was submitted through the Fly Zone Elite Travels website.
                 </Button>
               </div>
 
-              <p className="text-sm text-gray-500 text-center">
+              <p className="text-xs sm:text-sm text-gray-500 text-center">
                 By submitting this form, you agree to be contacted by Fly Zone Elite Travels
               </p>
             </form>
           </>
         ) : (
-          <div className="py-12 text-center">
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
-              <CheckCircle className="h-8 w-8 text-green-600" />
+          <div className="py-8 sm:py-12 text-center px-4">
+            <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-full mb-4">
+              <CheckCircle className="h-6 w-6 sm:h-8 sm:w-8 text-green-600" />
             </div>
-            <h3 className="text-2xl text-[#0B1220] mb-2">Request Sent Successfully!</h3>
-            <p className="text-gray-600 mb-4">
+            <h3 className="text-xl sm:text-2xl text-[#0B1220] mb-2">Request Sent Successfully!</h3>
+            <p className="text-sm sm:text-base text-gray-600 mb-4">
               Thank you for your interest. We will review your request and contact you shortly with pricing and availability.
             </p>
-            <p className="text-sm text-gray-500">
+            <p className="text-xs sm:text-sm text-gray-500">
               A confirmation has been sent to {formData.email}
             </p>
           </div>
